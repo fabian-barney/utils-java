@@ -6,7 +6,6 @@
   <name>barney4j:utils</name>
   <description>Utility classes you do not want to miss in any project.</description>
   <build>
-    <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
