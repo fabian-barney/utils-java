@@ -1,4 +1,4 @@
-package com.barney4j.utils.unit;
+package media.barney.utils.unit;
 
 
 /*
@@ -248,7 +248,7 @@ public enum ByteUnit {
 
 
 	/*
-	 * Komfort-Methoden für Cross-Konvertierung
+	 * Komfort-Methoden fÃ¼r Cross-Konvertierung
 	 */
 	public final double toBits(double d) {
 		return BitUnit.BIT.convert(d, this);

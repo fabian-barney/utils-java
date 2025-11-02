@@ -1,4 +1,4 @@
-package com.barney4j.utils.unit;
+package media.barney.utils.unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
