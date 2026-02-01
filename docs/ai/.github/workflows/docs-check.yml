@@ -1,0 +1,26 @@
+name: Docs Check
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          globs: |
+            **/*.md
+            !**/node_modules/**
+          config: .markdownlint.json
+
+  linkcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2.0.2
+        with:
+          args: --no-progress --verbose --exclude-mail "**/*.md"
