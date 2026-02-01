@@ -1,0 +1,50 @@
+﻿# Minimal baseline ignores (extend per project)
+
+# Secrets
+.env
+.env.*
+!.env.example
+.envrc
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Logs and temp
+*.log
+logs/
+tmp/
+*.tmp
+*.cache
+
+# Build output
+target/
+build/
+dist/
+out/
+*.class
+
+# Dependencies and caches
+node_modules/
+.gradle/
+__pycache__/
+*.pyc
+.pytest_cache/
+coverage/
+.nyc_output/
+htmlcov/
+.npm/
+.yarn/
+.pnpm-store/
