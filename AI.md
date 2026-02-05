@@ -9,6 +9,12 @@ only one level deeper to keep navigation predictable.
 ## AI-RULES
 - [AI-RULES/AI-RULES.md](AI-RULES/AI-RULES.md) - Meta-guidance for maintaining this repository.
 
+## PROGRAMMING
+- [PROGRAMMING/PROGRAMMING.md](PROGRAMMING/PROGRAMMING.md) - Programming task guidance.
+
+## PLAN
+- [PLAN/PLAN.md](PLAN/PLAN.md) - Planning guidance for execution tasks.
+
 ## REVIEW
 - [REVIEW/REVIEW.md](REVIEW/REVIEW.md) - Code review guidance.
 

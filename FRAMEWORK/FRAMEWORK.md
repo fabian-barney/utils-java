@@ -16,7 +16,7 @@ Place framework-specific rules in this directory.
 - Favor clear release cadences, published support windows, and strong maintenance.
 - Prefer comprehensive feature sets over hype-driven adoption.
 - Ensure licenses are compatible with commercial closed-source use and that
-  required attribution is provided; see `AI/COMPLIANCE/LICENSES.md`.
+  required attribution is provided; see `COMPLIANCE/LICENSES.md`.
 
 ## Files
 - [ANGULAR.md](ANGULAR.md) - Angular framework guidance.

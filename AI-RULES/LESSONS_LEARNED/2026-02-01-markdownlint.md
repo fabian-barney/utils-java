@@ -5,7 +5,8 @@
 - Do not copy these rules into consuming projects.
 
 ## Issue
-Markdownlint failures after changes (MD013 line length, MD024 duplicate headings, MD047 trailing newline) and a UTF-8 BOM.
+Markdownlint failures after changes (MD013 line length, MD024 duplicate headings,
+MD047 trailing newline) and a UTF-8 BOM.
 
 ## Prevention
 - Keep lines <= 120 characters and wrap long list items.

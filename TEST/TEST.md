@@ -7,6 +7,10 @@ Testing expectations and verification notes.
 - Keep tests deterministic and fast.
 - Document when tests were not run.
 
+## Coverage
+- Target 100% line coverage by default for unit tests.
+- If 100% is not feasible, document the specific gaps and why.
+
 ## Test Types
 - Unit tests: fast, isolated, focused on logic in a single unit.
 - Integration tests: verify boundaries (DB, messaging, external services) and
@@ -19,6 +23,11 @@ Testing expectations and verification notes.
 - Use mocks to simulate failures, timeouts, and rare conditions that are hard to
   reproduce in real integrations.
 - Avoid over-mocking in ways that hide real integration risks.
+
+## Fixtures and Test Assets
+- Keep test fixtures in test-only directories (for example `src/test/resources`) separate from runtime assets.
+- Do not ship test fixtures in production artifacts; ensure build and packaging excludes them.
+- Use ignore rules to prevent accidental inclusion in runtime bundles or container images.
 
 ## Test Strategy
 - Default to unit tests for business logic.

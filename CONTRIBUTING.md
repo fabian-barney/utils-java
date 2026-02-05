@@ -5,8 +5,8 @@ shared AI guidance, so changes should be deliberate and well-reviewed.
 
 ## Workflow
 - Make focused changes per PR.
-- Update the relevant directory entry file (e.g., `AI/DESIGN/DESIGN.md`).
-- Keep `AI/AI.md` as the single top-level entry point.
+- Update the relevant directory entry file (e.g., `DESIGN/DESIGN.md`).
+- Keep `AI.md` as the single top-level entry point.
 - Avoid quoting copyrighted sources; summarize in your own words.
 
 ## Review Expectations

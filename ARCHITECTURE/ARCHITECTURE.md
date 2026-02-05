@@ -8,4 +8,5 @@ Place architecture rules in this directory.
 - [EVENT_DRIVEN_ARCHITECTURE.md](EVENT_DRIVEN_ARCHITECTURE.md) - Event-driven systems guidance.
 - [GRAPHQL.md](GRAPHQL.md) - GraphQL API design rules.
 - [MICROSERVICE.md](MICROSERVICE.md) - Microservice architecture practices.
+- [N_PLUS_1.md](N_PLUS_1.md) - Prevent N+1 query patterns.
 - [REST.md](REST.md) - REST API design rules.

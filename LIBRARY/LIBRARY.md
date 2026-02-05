@@ -12,11 +12,12 @@ Place library-specific rules in this directory.
 - Favor clear release cadences, published support windows, and strong maintenance.
 - Prefer comprehensive feature sets over hype-driven adoption.
 - Ensure licenses are compatible with commercial closed-source use and that
-  required attribution is provided; see `AI/COMPLIANCE/LICENSES.md`.
+  required attribution is provided; see `COMPLIANCE/LICENSES.md`.
 
 ## Files
 - [GUAVA.md](GUAVA.md) - Google Guava library guidance.
 - [JAXB.md](JAXB.md) - JAXB XML binding guidance.
+- [JEST.md](JEST.md) - Jest testing guidance.
 - [JOOQ.md](JOOQ.md) - jOOQ SQL DSL guidance.
 - [JPA.md](JPA.md) - Java Persistence API guidance.
 - [JUNIT.md](JUNIT.md) - JUnit testing guidance.
