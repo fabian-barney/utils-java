@@ -2,7 +2,7 @@
 
 ## Scope
 - Applies only to this repository.
-- Do not copy these rules into consuming projects.
+- Do not copy these rules into downstream-projects.
 
 ## Issue
 During the v2.1.0 and v2.1.1 releases, versioned example prompts in README.md

@@ -20,6 +20,8 @@ Rules to promote readable code and low cognitive complexity.
 - Avoid deeply nested expressions as function arguments; compute intermediate
   values first so the intent is obvious.
 - Name intermediate values to reflect meaning, not mechanics.
+- Cascading ternary operators (nested or chained ternary expressions) are
+  strictly forbidden.
 
 ## Naming and Structure
 - Use clear, descriptive names for variables, methods, and classes.

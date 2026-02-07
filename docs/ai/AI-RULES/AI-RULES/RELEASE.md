@@ -1,15 +1,15 @@
 # RELEASE
 
-Release process for the ai-rules repository (not downstream projects).
+Release process for the ai-rules repository (not downstream-projects).
 
 ## Scope
 - Applies only to this repository.
-- Do not copy these rules into consuming projects.
+- Do not copy these rules into downstream-projects.
 
 ## AI-Prompted Release
 Example prompts:
 - "release ai-rules"
-- "release ai-rules v3.0.0"
+- "release ai-rules v4.0.0"
 
 Version selection:
 - If the user specifies a version, use it (must be `vMAJOR.MINOR.PATCH`).
@@ -28,7 +28,7 @@ Version selection:
    - Summarize user-visible changes.
 4. Update versioned examples to the new tag (for example, prompts in `README.md`).
 5. Commit the changelog and example updates with a release prep message.
-6. Create an annotated tag (for example `v3.0.0`).
+6. Create an annotated tag (for example `v4.0.0`).
 7. Push `main` and the tag to GitHub.
 8. Create a GitHub Release using the changelog notes.
 9. Verify the release page and tag exist.

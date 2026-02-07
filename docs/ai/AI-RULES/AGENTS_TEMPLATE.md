@@ -17,11 +17,11 @@ To switch modes later, use "mode ai-rules local" or "mode ai-rules git".
 
 ### Vendor path
 ai-rules is vendored under `docs/ai/AI-RULES/`.
-Define `AI_RULES_PATH` as `docs/ai/AI-RULES`.
+Define `<AI_RULES_PATH>` as `docs/ai/AI-RULES`.
 
 ### Mode: local (no commits, no push)
 1. Add the ai-rules subtree (creates a local commit):
-   `git subtree add --prefix AI_RULES_PATH https://github.com/fabian-barney/ai-rules.git REF --squash`
+   `git subtree add --prefix <AI_RULES_PATH> https://github.com/fabian-barney/ai-rules.git REF --squash`
    - Use the requested version tag; otherwise use the latest tagged release.
      If no tags exist, use `main`.
    - If Git requires an author identity, set it locally:
@@ -49,29 +49,33 @@ Define `AI_RULES_PATH` as `docs/ai/AI-RULES`.
    /CLAUDE.md
    /.github/copilot-instructions.md
 4. Baseline entry point (after subtree add):
-   AI_RULES_PATH/AI.md
+   `<AI_RULES_PATH>/AI.md`
 5. Create a local overlay for project-specific rules (recommended):
    AI_PROJECT.md
    Note: keep this outside `docs/ai/` so subtree updates do not overwrite it.
 6. Create a project lessons learned area (recommended):
    docs/ai/LESSONS_LEARNED/LESSONS_LEARNED.md
-   See `AI-RULES/CONSUMING_PROJECT.md` for the template.
-7. Create entry points for other AI tools:
+   See `AI-RULES/DOWNSTREAM-PROJECT.md` for guidance.
+7. Create a project ADR area (recommended):
+   docs/ai/DECISIONS/DECISIONS.md
+   docs/ai/DECISIONS/ADR-0001-TITLE.md
+   See `AI-RULES/DOWNSTREAM-PROJECT.md` for guidance.
+8. Create entry points for other AI tools:
    - `CLAUDE.md` (Claude Code)
    - `.github/copilot-instructions.md` (GitHub Copilot)
-8. Replace this template content in `AGENTS.md` with the final references:
-   - Baseline: AI_RULES_PATH/AI.md
+9. Replace this template content in `AGENTS.md` with the final references:
+   - Baseline: `<AI_RULES_PATH>/AI.md`
    - Overlay: AI_PROJECT.md
 
 Local-only update note:
 - Follow the local-mode update steps in `AI-RULES/UPDATE.md`.
-  Do not run `git subtree add` on top of an existing `AI_RULES_PATH` directory.
-  If `AI_RULES_PATH` already exists locally, remove it only after confirming
+  Do not run `git subtree add` on top of an existing `<AI_RULES_PATH>` directory.
+  If `<AI_RULES_PATH>` already exists locally, remove it only after confirming
   there is no real work in that directory.
 
 ### Mode: git (tracked in repo)
 1. Add the ai-rules subtree:
-   `git subtree add --prefix AI_RULES_PATH https://github.com/fabian-barney/ai-rules.git REF --squash`
+   `git subtree add --prefix <AI_RULES_PATH> https://github.com/fabian-barney/ai-rules.git REF --squash`
    - Use the requested version tag; otherwise use the latest tagged release.
      If no tags exist, use `main`.
    - If Git requires an author identity, set it locally:
@@ -91,34 +95,38 @@ Local-only update note:
      real work first. If there are no real changes, you may discard them only
      after explicit confirmation (for example, `git reset --hard`).
 2. Baseline entry point (after subtree add):
-   AI_RULES_PATH/AI.md
+   `<AI_RULES_PATH>/AI.md`
 3. Create a local overlay for project-specific rules (recommended):
    AI_PROJECT.md
    Note: keep this outside `docs/ai/` so subtree updates do not overwrite it.
 4. Create a project lessons learned area (recommended):
    docs/ai/LESSONS_LEARNED/LESSONS_LEARNED.md
-   See `AI-RULES/CONSUMING_PROJECT.md` for the template.
-5. Create entry points for other AI tools:
+   See `AI-RULES/DOWNSTREAM-PROJECT.md` for guidance.
+5. Create a project ADR area (recommended):
+   docs/ai/DECISIONS/DECISIONS.md
+   docs/ai/DECISIONS/ADR-0001-TITLE.md
+   See `AI-RULES/DOWNSTREAM-PROJECT.md` for guidance.
+6. Create entry points for other AI tools:
    - `CLAUDE.md` (Claude Code)
    - `.github/copilot-instructions.md` (GitHub Copilot)
-6. Replace this template content in `AGENTS.md` with the final references:
-   - Baseline: AI_RULES_PATH/AI.md
+7. Replace this template content in `AGENTS.md` with the final references:
+   - Baseline: `<AI_RULES_PATH>/AI.md`
    - Overlay: AI_PROJECT.md
-7. Commit and push the changes.
+8. Commit and push the changes.
 
 Git update note:
-- Use `git subtree pull --prefix AI_RULES_PATH https://github.com/fabian-barney/ai-rules.git REF --squash`
+- Use `git subtree pull --prefix <AI_RULES_PATH> https://github.com/fabian-barney/ai-rules.git REF --squash`
   and commit the update.
 
 ## Entry Point Templates
-Note: Replace `AI_RULES_PATH` with `docs/ai/AI-RULES`.
+Note: Replace `<AI_RULES_PATH>` with `docs/ai/AI-RULES`.
 
 ### CLAUDE.md
 ```
 # CLAUDE
 
 Use the shared AI rules located at:
-- Baseline: AI_RULES_PATH/AI.md
+- Baseline: <AI_RULES_PATH>/AI.md
 - Overlay: AI_PROJECT.md
 ```
 
@@ -127,7 +135,7 @@ Use the shared AI rules located at:
 # Copilot Instructions
 
 Use the shared AI rules located at:
-- Baseline: AI_RULES_PATH/AI.md
+- Baseline: <AI_RULES_PATH>/AI.md
 - Overlay: AI_PROJECT.md
 ```
 

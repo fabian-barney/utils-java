@@ -2,7 +2,7 @@
 
 ## Scope
 - Applies only to this repository.
-- Do not copy these rules into consuming projects.
+- Do not copy these rules into downstream-projects.
 
 ## Issue
 Markdownlint failed because placeholder tokens wrapped in angle brackets (for

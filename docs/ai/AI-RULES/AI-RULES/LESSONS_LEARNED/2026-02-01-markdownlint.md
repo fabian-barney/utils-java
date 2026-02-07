@@ -2,7 +2,7 @@
 
 ## Scope
 - Applies only to this repository.
-- Do not copy these rules into consuming projects.
+- Do not copy these rules into downstream-projects.
 
 ## Issue
 Markdownlint failures after changes (MD013 line length, MD024 duplicate headings,

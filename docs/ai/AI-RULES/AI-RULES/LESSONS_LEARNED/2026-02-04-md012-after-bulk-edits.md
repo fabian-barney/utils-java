@@ -2,7 +2,7 @@
 
 ## Scope
 - Applies only to this repository.
-- Do not copy these rules into consuming projects.
+- Do not copy these rules into downstream-projects.
 
 ## Issue
 Markdownlint MD012 failures (multiple blank lines) appeared across many files

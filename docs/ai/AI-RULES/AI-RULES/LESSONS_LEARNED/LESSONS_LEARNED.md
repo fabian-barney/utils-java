@@ -4,7 +4,7 @@ Compact, actionable notes to prevent repeat mistakes.
 
 ## Scope
 - Applies only to this repository.
-- Do not copy these rules into consuming projects.
+- Do not copy these rules into downstream-projects.
 - Avoid duplicate lessons; update an existing entry if the issue matches.
 - Keep each lesson focused on a single concern. If multiple issues occur, split
   them into separate files.
@@ -16,7 +16,7 @@ Copy and fill in for each lesson learned:
 
 ## Scope
 - Applies only to this repository.
-- Do not copy these rules into consuming projects.
+- Do not copy these rules into downstream-projects.
 
 ## Issue
 What went wrong and why it mattered.

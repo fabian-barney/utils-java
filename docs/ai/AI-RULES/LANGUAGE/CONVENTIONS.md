@@ -2,16 +2,22 @@
 
 ## Formatting
 Formatting rules are ordered by precedence:
-1. Standard, language-specific formatting rules (e.g., official formatters).
-2. The conventions in this file.
+1. Standard, language-specific formatting rules.
+2. The ai-rules conventions regarding formatting.
 3. Individual formatting preferences (lowest priority).
 
 ### Rules
-- Follow standard language-specific formatters when they exist.
+- Follow standard language-specific formatting rules when they exist.
 - It is not allowed to override standard formatting rules, even by team
   consensus.
-- When no standard formatter exists, apply the conventions in this file and
-  keep them consistent across the codebase.
+- If not conflicting with standard formatting rules, apply the ai-rules
+  conventions and keep them consistent across the codebase.
+- For function/method parameter lists and function/method call argument lists
+  with more than 3 items, use multiline formatting in new/changed code.
+- If parameter/argument lists are multiline, place each item on its own line.
+- If parameter/argument lists are multiline, require a trailing delimiter (for
+  example, a trailing comma in comma-separated lists) on the last item when
+  supported by the language.
 
 ## Naming Conventions
 - Use English names by default.
