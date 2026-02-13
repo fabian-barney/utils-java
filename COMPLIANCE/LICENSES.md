@@ -1,56 +1,107 @@
 # LICENSES
 
-This guidance is for commercial, closed-source use. It is not legal advice.
-When in doubt, consult legal counsel.
+Guidance for AI agents on software-license decisions in commercial
+closed-source contexts.
 
-## General Rules
-- Only adopt dependencies with licenses compatible with closed-source
-  commercial distribution.
-- Prefer permissive licenses and well-governed stewardship.
-- If a dependency is dual-licensed, select the compatible license explicitly.
-- Record license decisions in an ADR when material.
+This is engineering policy guidance, not legal advice.
+Consult legal counsel for final legal decisions.
 
-## Attribution and Notice Obligations
-- Many permissive licenses still require preserving copyright and license
-  notices in distributions.
-- When required, ship license texts and notices with the product (for example,
-  `THIRD_PARTY_NOTICES.md` and/or a `licenses/` directory).
-- If a license requires a NOTICE file (e.g., Apache-2.0), include it and keep it
-  up to date.
-- If the product UI or documentation must disclose third-party usage, ensure an
-  appropriate "About" or credits section exists.
-- Track attribution requirements in the dependency inventory so releases remain
-  compliant.
+## Scope
+- Define dependency-license acceptance and release-compliance workflow.
+- Apply this file whenever adding/upgrading dependencies or distributing
+  artifacts.
+
+## Semantic Dependencies
+- Inherit compliance baseline from `COMPLIANCE/COMPLIANCE.md`.
+- This file is part of the cross-cutting baseline; downstream framework/library/
+  build-tool docs must comply with this policy.
+
+## Decision Framework
+For each dependency (direct and significant transitive):
+1. Identify authoritative license (SPDX + source repository/license file).
+2. Classify risk (permissive / conditional / restricted).
+3. Confirm obligations (notice, attribution, source disclosure, copyleft scope).
+4. Verify compatibility with closed-source distribution model.
+5. Record decision in dependency inventory/ADR when material.
 
 ## Generally Compatible (Permissive)
-These licenses are typically business-friendly for closed-source use:
+Typically acceptable for commercial closed-source use:
 - Apache-2.0
 - MIT
-- BSD-2-Clause
-- BSD-3-Clause
+- BSD-2-Clause / BSD-3-Clause
 - ISC
-- Zlib (zlib/libpng)
-- BSL-1.0 (Boost Software License)
+- Zlib
+- BSL-1.0
 - CC0-1.0
 - Unlicense
 
-## Conditional / Requires Review
-These may be compatible depending on usage and obligations. Legal review is
-recommended before adopting them in closed-source products:
-- MPL-2.0 (file-level copyleft)
-- LGPL-2.1 / LGPL-3.0 (linking obligations)
-- EPL-2.0 (weak copyleft)
-- CDDL-1.0 (weak copyleft)
+## Conditional Licenses (Review Required)
+Potentially acceptable with constraints and legal review:
+- MPL-2.0
+- LGPL-2.1-only / LGPL-2.1-or-later
+- LGPL-3.0-only / LGPL-3.0-or-later
+- EPL-2.0
+- CDDL-1.0
 
-## Not Compatible (Avoid)
-These licenses generally require open-source distribution or impose strong
-copyleft obligations that conflict with closed-source products:
-- GPL-2.0 / GPL-3.0
-- AGPL-3.0
+## Generally Not Compatible for Closed-Source Distribution
+Avoid unless legal explicitly approves alternative model:
+- GPL-2.0-only / GPL-2.0-or-later
+- GPL-3.0-only / GPL-3.0-or-later
+- AGPL-3.0-only / AGPL-3.0-or-later
 - SSPL-1.0
-- Licenses with "Commons Clause" or non-commercial restrictions
+- Commons Clause / non-commercial-restricted licenses
 
-## Verification
-- Check the SPDX identifier in the dependency manifest.
-- Confirm license text for custom or non-standard licenses.
-- Ensure transitive dependencies are also compatible.
+## Attribution and Notice Workflow
+- Preserve required copyright/license notices.
+- For distributed artifacts, maintain `THIRD_PARTY_NOTICES.md` in the project
+  root (or an explicitly documented equivalent path).
+- Include NOTICE file obligations (for example Apache-2.0) in release outputs.
+- Keep attribution metadata updated on dependency upgrades/removals.
+
+## Transitive Dependency Governance
+- Evaluate transitive licenses, not only direct dependencies.
+- Flag unknown/custom licenses for manual review.
+- Block merges/releases with unresolved license status.
+
+## High-Risk Pitfalls
+1. Approving dependency based only on package registry metadata.
+2. Ignoring transitive copyleft obligations.
+3. Missing NOTICE/attribution files in release artifacts.
+4. License changes on dependency upgrade unnoticed.
+5. Assuming "internal use" exception when software is distributed.
+
+## Do / Don't Examples
+### 1. License Verification
+```text
+Don't: trust single registry field blindly.
+Do:    verify SPDX + upstream LICENSE file + release notes.
+```
+
+### 2. Upgrade Governance
+```text
+Don't: auto-merge major dependency upgrades without license recheck.
+Do:    run license scan and review before merge/release.
+```
+
+### 3. Release Compliance
+```text
+Don't: ship binaries without third-party notices.
+Do:    include required notices/licenses with release artifacts.
+```
+
+## Code Review Checklist for License Compliance
+- Is license classification verified for new/updated dependencies?
+- Are transitive licenses scanned and acceptable?
+- Are attribution/notice obligations captured and implemented?
+- Are restricted/conditional licenses escalated for legal review?
+- Are license checks integrated into CI/release gating?
+
+## Testing and Validation Guidance
+- Run automated license scan in CI for every dependency change.
+- Run full license + notice validation before release creation.
+- Diff dependency tree on upgrades to detect new license obligations.
+- Keep manual review log for exceptions and legal decisions.
+
+## Override Notes
+- Legal/compliance policy may be stricter than this file; stricter policy always
+  wins.

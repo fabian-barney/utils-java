@@ -1,6 +1,34 @@
 # LIBRARY
 
-Place library-specific rules in this directory.
+Library-layer contract for technology-specific API usage and integration
+patterns.
+
+## Role in the Ruleset
+- LIBRARY docs specialize framework/language rules for specific libraries.
+- Library docs inherit cross-cutting, language, and framework constraints before
+  applying API-specific guidance.
+- Global precedence and override behavior are defined in
+  `CORE/RULE_DEPENDENCY_TREE.md`.
+
+## Scope Boundary
+LIBRARY includes:
+- Library API usage patterns and anti-patterns.
+- Library-specific reliability, performance, and testing guardrails.
+- Integration boundaries for library behavior in application code.
+
+LIBRARY does not include:
+- Generic language conventions/readability constraints.
+- Framework lifecycle and rendering/state-management guidance.
+- Build/deployment/CI infrastructure behavior.
+
+Those belong in `LANGUAGE/**`, `FRAMEWORK/**`, `BUILD_TOOLS/**`,
+`INFRASTRUCTURE/**`, and `CI-CD/**`.
+
+## Specialization Contract
+- Library docs may narrow parent rules where library semantics require it.
+- Any parent-rule override must be explicit and justified in the library doc.
+- Library docs must not weaken inherited security/compliance/test constraints
+  without an explicit, reviewed rationale.
 
 ## Selection Guidance
 - Prefer mature, enterprise-ready libraries with a proven track record.
@@ -28,3 +56,9 @@ Place library-specific rules in this directory.
 - [PLAYWRIGHT.md](PLAYWRIGHT.md) - Playwright browser testing guidance.
 - [RESILIENCE4J.md](RESILIENCE4J.md) - Resilience4j patterns guidance.
 - [SELENIUM.md](SELENIUM.md) - Selenium browser testing guidance.
+
+## Authoring Notes
+- Keep this file index-level and boundary-focused.
+- Put deep usage details in the child library documents.
+- When adding a new library doc, update this index and align semantic
+  dependencies in `CORE/RULE_DEPENDENCY_TREE.md`.

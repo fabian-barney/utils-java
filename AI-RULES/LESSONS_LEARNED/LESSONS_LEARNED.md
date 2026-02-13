@@ -26,6 +26,16 @@ Concrete steps or checks that would have avoided the issue.
 ```
 
 ## Files
+- [2026-02-13-retrigger-copilot-review-after-fix-pushes.md](2026-02-13-retrigger-copilot-review-after-fix-pushes.md)
+  - Re-trigger Copilot review after every fix push before merge.
+- [2026-02-13-no-copilot-mentions-in-pr-comments.md](2026-02-13-no-copilot-mentions-in-pr-comments.md)
+  - Never mention `@copilot` in PR comments.
+- [2026-02-13-github-issue-newline-escaping.md](2026-02-13-github-issue-newline-escaping.md)
+  - Prevent scrambled issue bodies by using `--body-file` for create/edit.
+- [2026-02-08-react-example-robustness.md](2026-02-08-react-example-robustness.md)
+  - Keep React guidance examples copy/paste compilable and cross-environment robust.
+- [2026-02-07-pr-issue-linking.md](2026-02-07-pr-issue-linking.md)
+  - Link each PR to its issue so merged PRs close issues automatically.
 - [2026-02-04-md012-after-bulk-edits.md](2026-02-04-md012-after-bulk-edits.md)
   - Prevent MD012 regressions after bulk edits.
 - [2026-02-04-review-comments-resolution.md](2026-02-04-review-comments-resolution.md)

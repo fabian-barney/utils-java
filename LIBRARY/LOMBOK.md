@@ -1,46 +1,84 @@
 # LOMBOK
 
-Lombok is strongly encouraged in Java projects. It reduces boilerplate and
-improves readability when used consistently.
+Guidance for AI agents implementing and reviewing Lombok usage.
 
-## Preferred Usage
-- Use `@RequiredArgsConstructor` for dependency injection and for constructor
-  injection with annotations like `@Value` or `@ConfigurationProperties`.
-- Use `@Slf4j` for logging.
-- Use `@Builder` for complex object construction.
-- Use `@Value` for immutable DTOs.
-- Use `@Getter` / `@Setter` when you need fine-grained control.
+## Scope
+- Define when Lombok improves clarity and when explicit code is safer.
+- Apply this file to Java classes using Lombok annotations.
 
-## Use With Care
-- `@Data`: avoid on entities or types where equality is identity-based. Prefer
-  explicit `@Getter` / `@Setter` and define `equals` / `hashCode` deliberately.
-- `@SneakyThrows`: only with an adjacent line comment explaining why it is an
-  appropriate use-case.
-- `@EqualsAndHashCode(callSuper = true)`: only when superclass fields are part
-  of identity.
-- `@ToString`: avoid on types with heavy or recursive object graphs.
+## Semantic Dependencies
+- Inherit Java baseline from `LANGUAGE/JAVA/JAVA.md` and
+  `LANGUAGE/JAVA/EFFECTIVE_JAVA.md`.
+- Inherit design/readability constraints from `DESIGN/CLEAN_CODE.md`.
 
-## Consistency
-- Keep Lombok usage consistent across the codebase.
-- Ensure annotation processing is enabled in the build and IDE.
-- Add a `lombok.config` with `lombok.copyableAnnotations` configured. Scan the
-  project for frameworks in use and include their relevant annotations so they
-  are preserved on generated constructors (Spring annotations are common, but
-  this is not limited to Spring).
+## Defaults
+- Use Lombok to remove low-value boilerplate while preserving clarity.
+- Prefer `@RequiredArgsConstructor` for dependency injection.
+- Prefer `@Slf4j` for logger wiring.
+- Prefer `@Builder` for complex immutable object construction.
+- Prefer explicit annotations over broad convenience annotations when behavior
+  matters.
 
-Example `lombok.config`:
+## Annotation Selection Policy
+- `@Getter`/`@Setter`: use selectively based on encapsulation intent.
+- `@Value` (`lombok.Value`): prefer for immutable DTO/value objects.
+- `@Data`: avoid by default on domain entities and types with nuanced identity.
+- `@EqualsAndHashCode`: configure intentionally for inheritance/identity.
+- `@ToString`: avoid exposing large graphs or sensitive fields.
+
+## Risky Annotations and Guardrails
+- `@SneakyThrows`: use only with explicit rationale and bounded scope.
+- `@Builder.Default`: verify semantics for null/optional behavior.
+- `@SuperBuilder`: use cautiously; avoid deep inheritance complexity.
+- Keep generated behavior understandable to reviewers.
+
+## Tooling and Build Consistency
+- Ensure annotation processing is enabled in build and IDE.
+- Keep `lombok.config` committed and consistent.
+- Configure `lombok.copyableAnnotations` for framework-required constructor
+  annotations where needed.
+- Avoid IDE/build mismatch where generated code differs.
+
+## High-Risk Pitfalls
+1. `@Data` on entities with incorrect equals/hashCode semantics.
+2. Hidden behavior from broad annotations reducing readability.
+3. `@ToString` leaking sensitive or massive object graphs.
+4. `@SneakyThrows` masking API exception contracts.
+5. Annotation processing misconfiguration causing compile/runtime drift.
+
+## Do / Don't Examples
+### 1. Entity Identity
+```text
+Don't: @Data on JPA entity with mutable identity semantics.
+Do:    explicit getters/setters + deliberate equals/hashCode strategy.
 ```
-# This file tells lombok to copy certain annotations to generated constructors
-# This is important for framework annotations like @Value, @Lazy, etc.
 
-# Copy these annotations to generated constructors
-lombok.copyableAnnotations += org.springframework.beans.factory.annotation.Value
-lombok.copyableAnnotations += org.springframework.beans.factory.annotation.Qualifier
-lombok.copyableAnnotations += org.springframework.context.annotation.Lazy
-lombok.copyableAnnotations += org.springframework.beans.factory.annotation.Autowired
-lombok.copyableAnnotations += org.jspecify.annotations.Nullable
-
-# Additional Lombok configuration
-lombok.addLombokGeneratedAnnotation = true
-lombok.anyConstructor.addConstructorProperties = true
+### 2. Exception Transparency
+```text
+Don't: use @SneakyThrows to bypass checked exception design.
+Do:    model exception flow explicitly unless justified otherwise.
 ```
+
+### 3. Constructor Injection
+```text
+Don't: field injection with mutable dependencies.
+Do:    @RequiredArgsConstructor + final dependencies.
+```
+
+## Code Review Checklist for Lombok
+- Is Lombok reducing boilerplate without hiding critical behavior?
+- Are risky annotations (`@Data`, `@SneakyThrows`) justified?
+- Are equality/toString semantics safe and intentional?
+- Is sensitive data excluded from generated toString output?
+- Is lombok config/tooling consistency ensured?
+- Are generated constructors aligned with DI framework needs?
+
+## Testing Guidance
+- Test equality/hashCode behavior for classes using generated methods.
+- Test serialization/mapping behavior for Lombok-built DTOs.
+- Validate build + IDE annotation processing consistency in CI.
+- Add regression tests when Lombok annotation strategy changes.
+
+## Override Notes
+- If project policy prefers explicit boilerplate in critical modules, follow
+  stricter module policy. Baseline rule: favor clarity over annotation density.

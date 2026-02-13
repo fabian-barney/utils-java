@@ -1,35 +1,92 @@
 # TEST
 
-Testing expectations and verification notes.
+Guidance for AI agents implementing, updating, and reviewing tests.
 
-## Expectations
-- Add tests when behavior changes.
-- Keep tests deterministic and fast.
-- Document when tests were not run.
+## Scope
+Defines baseline testing expectations for all stacks and domains.
 
-## Coverage
-- Target 100% line coverage by default for unit tests.
-- If 100% is not feasible, document the specific gaps and why.
+## Semantic Dependencies (Upstream Rules)
+- Inherits `CORE/CORE.md` and `CORE/RULE_DEPENDENCY_TREE.md` precedence.
+- Security-sensitive scenarios must also satisfy `SECURITY/SECURITY.md`.
+- Language/framework/library-specific test techniques may specialize this
+  baseline but must not weaken it without explicit rationale.
 
-## Test Types
-- Unit tests: fast, isolated, focused on logic in a single unit.
-- Integration tests: verify boundaries (DB, messaging, external services) and
-  wiring between components.
-- E2E tests: cover critical user journeys only; keep the suite small and stable.
+## Testing Defaults
+- Add or update tests for every behavior change.
+- Prefer deterministic and isolated tests.
+- Keep test suites fast enough for frequent CI execution.
+- Use risk-based depth: higher business/security impact requires stronger test
+  coverage across layers.
 
-## Mocks and Edge Cases
-- Mocks are acceptable and useful for modeling edge cases around the unit under
-  test.
-- Use mocks to simulate failures, timeouts, and rare conditions that are hard to
-  reproduce in real integrations.
-- Avoid over-mocking in ways that hide real integration risks.
+## Test Strategy by Layer
+- Unit tests:
+  - Default first choice for business logic.
+  - Must be fast, isolated, and behavior-focused.
+- Integration tests:
+  - Required for boundaries (DB, queues, file systems, external services).
+  - Validate wiring, contracts, and transactional behavior.
+- End-to-end tests:
+  - Cover critical user/value flows only.
+  - Keep suite small, stable, and non-flaky.
 
-## Fixtures and Test Assets
-- Keep test fixtures in test-only directories (for example `src/test/resources`) separate from runtime assets.
-- Do not ship test fixtures in production artifacts; ensure build and packaging excludes them.
-- Use ignore rules to prevent accidental inclusion in runtime bundles or container images.
+## Determinism and Flakiness Control
+- Avoid reliance on wall-clock time, random seeds, network timing, and shared
+  mutable state without explicit control.
+- Use stable fixtures and explicit setup/teardown.
+- Control time/randomness with test doubles where feasible.
+- Quarantine and fix flaky tests; do not normalize flaky behavior as acceptable.
 
-## Test Strategy
-- Default to unit tests for business logic.
-- Require integration tests only for boundary behavior and wiring.
-- Keep E2E tests limited to critical user journeys.
+## Mocks, Stubs, and Fakes
+- Mock boundaries, not core behavior under test.
+- Avoid over-mocking that hides integration risks.
+- Use fakes/stubs for slow or unavailable dependencies where appropriate.
+- Reset shared test doubles between tests to avoid cross-test coupling.
+
+## Data and Fixtures
+- Keep fixtures in test-only paths.
+- Do not ship test fixtures in production artifacts.
+- Prefer minimal fixture data that expresses intent clearly.
+- Use scenario-based datasets for edge and failure-path coverage.
+
+## Coverage and Confidence
+- High line coverage alone is insufficient; prioritize meaningful assertions and
+  branch/error-path validation.
+- Cover happy paths, edge cases, failure modes, and regression paths.
+- If coverage targets are not met, document exact gaps and risk rationale.
+
+## CI and Reporting Expectations
+- Run relevant tests before opening a PR.
+- Report what was executed and what was not.
+- In CI, fail builds on test failures.
+- Publish actionable reports/artifacts for failed runs when available.
+
+## High-Risk Pitfalls
+1. Changing behavior without adding/updating tests.
+2. Treating snapshot-only assertions as sufficient behavior verification.
+3. Accepting flaky tests to keep pipelines green.
+4. Mocking internals so heavily that integration defects are hidden.
+5. Using shared mutable fixtures that create order-dependent failures.
+6. Ignoring error-path and boundary-condition testing.
+7. Claiming confidence from coverage metrics without assertion quality.
+
+## Code Review Checklist for Testing
+- Do behavior changes include corresponding tests?
+- Are tests deterministic and independent of execution order?
+- Are boundary integrations covered where risk demands it?
+- Are failure paths and edge cases explicitly validated?
+- Are assertions behavior-focused (not only implementation details)?
+- Are mocks/stubs used at the right boundary level?
+- Are fixture/test assets correctly isolated from production packaging?
+- Is test execution scope and result reporting clear in PR notes?
+
+## Validation Notes for Delivery
+When delivering a change, include:
+- Tests executed (unit/integration/e2e).
+- Key manual checks (if applicable).
+- Known test gaps and risk justification.
+- Follow-up issue references for deferred test debt.
+
+## Override Notes
+- Downstream docs may specialize this baseline (for example framework-specific
+  testing patterns), but must not reduce determinism, coverage of critical
+  paths, or reporting clarity without explicit justification.

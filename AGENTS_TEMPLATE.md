@@ -15,9 +15,13 @@ Follow the mode requested by the user:
 If the user did not specify a mode, default to local (do not ask).
 To switch modes later, use "mode ai-rules local" or "mode ai-rules git".
 
-### Vendor path
-ai-rules is vendored under `docs/ai/AI-RULES/`.
-Define `<AI_RULES_PATH>` as `docs/ai/AI-RULES`.
+### Paths
+Use these placeholders consistently:
+- `<AI_ROOT_PATH>` = `docs/ai`
+- `<AI_RULES_PATH>` = `<AI_ROOT_PATH>/AI-RULES`
+- `<AI_PROJECT_PATH>` = `<AI_ROOT_PATH>/PROJECT`
+
+By default, ai-rules is vendored under `<AI_RULES_PATH>`.
 
 ### Precondition: clean working tree
 Before any `git subtree add`/`git subtree pull` command:
@@ -29,7 +33,7 @@ Before any `git subtree add`/`git subtree pull` command:
 
 ### Resolve REF (deterministic)
 Use this before any `git subtree add/pull` command:
-- If the user specifies a tag (for example `v4.1.0`), validate it:
+- If the user specifies a tag (for example `v4.3.0`), validate it:
   `git ls-remote --exit-code --refs --tags https://github.com/fabian-barney/ai-rules.git "refs/tags/<TAG>"`
   - If valid, set `REF=<TAG>`.
   - If invalid, stop and ask for a valid tag.
@@ -83,30 +87,32 @@ version and adapt behavior as needed:
 2. Undo the subtree commit but keep files:
    git reset --mixed HEAD~1
 3. Add local-only excludes to `.git/info/exclude`:
-   /docs/ai/AI-RULES/
+   /<AI_RULES_PATH>/
+   /<AI_PROJECT_PATH>/
    /AGENTS.md
-   /AI_PROJECT.md
    /CLAUDE.md
    /.github/copilot-instructions.md
 4. Baseline entry point (after subtree add):
    `<AI_RULES_PATH>/AI.md`
-5. Create a local overlay for project-specific rules (recommended):
-   AI_PROJECT.md
-   Note: keep this outside `docs/ai/` so subtree updates do not overwrite it.
-   In local mode, keep `AI_PROJECT.md` local-only (excluded from VCS).
+5. Create a local extension entry for project-specific AI rules (recommended):
+   `<AI_PROJECT_PATH>/AI.md`
+   In local mode, keep `<AI_PROJECT_PATH>/` local-only (excluded from VCS).
+   Verify transitive reachability for markdown files under `<AI_PROJECT_PATH>`
+   using `AI-RULES/DOWNSTREAM-OVERRIDES.md`.
 6. Create a project lessons learned area (recommended):
-   docs/ai/LESSONS_LEARNED/LESSONS_LEARNED.md
-   See `AI-RULES/DOWNSTREAM-PROJECT.md` for guidance.
+   `<AI_ROOT_PATH>/LESSONS_LEARNED/LESSONS_LEARNED.md`
+   See `AI-RULES/DOWNSTREAM-PROJECT.md` and
+   `AI-RULES/DOWNSTREAM-OVERRIDES.md` for guidance.
 7. Create a project ADR area (recommended):
-   docs/ai/DECISIONS/DECISIONS.md
-   docs/ai/DECISIONS/ADR-0001-TITLE.md
+   `<AI_ROOT_PATH>/DECISIONS/DECISIONS.md`
+   `<AI_ROOT_PATH>/DECISIONS/ADR-0001-TITLE.md`
    See `AI-RULES/DOWNSTREAM-PROJECT.md` for guidance.
 8. Create entry points for other AI tools:
    - `CLAUDE.md` (Claude Code)
    - `.github/copilot-instructions.md` (GitHub Copilot)
 9. Replace this template content in `AGENTS.md` with the final references:
    - Baseline: `<AI_RULES_PATH>/AI.md`
-   - Overlay: AI_PROJECT.md
+   - Downstream extension: `<AI_PROJECT_PATH>/AI.md`
 
 Local-only update note:
 - Follow the local-mode update steps in `AI-RULES/UPDATE.md`.
@@ -136,23 +142,26 @@ Local-only update note:
      after explicit confirmation (for example, `git reset --hard`).
 2. Baseline entry point (after subtree add):
    `<AI_RULES_PATH>/AI.md`
-3. Create a project overlay for project-specific rules (recommended):
-   AI_PROJECT.md
-   Note: keep this outside `docs/ai/` so subtree updates do not overwrite it.
-   In git mode, keep `AI_PROJECT.md` tracked so the team shares the overlay.
+3. Create a project extension entry for project-specific rules (recommended):
+   `<AI_PROJECT_PATH>/AI.md`
+   In git mode, keep `<AI_PROJECT_PATH>/` tracked so the team shares the
+   extensions.
+   Verify transitive reachability for markdown files under `<AI_PROJECT_PATH>`
+   using `AI-RULES/DOWNSTREAM-OVERRIDES.md`.
 4. Create a project lessons learned area (recommended):
-   docs/ai/LESSONS_LEARNED/LESSONS_LEARNED.md
-   See `AI-RULES/DOWNSTREAM-PROJECT.md` for guidance.
+   `<AI_ROOT_PATH>/LESSONS_LEARNED/LESSONS_LEARNED.md`
+   See `AI-RULES/DOWNSTREAM-PROJECT.md` and
+   `AI-RULES/DOWNSTREAM-OVERRIDES.md` for guidance.
 5. Create a project ADR area (recommended):
-   docs/ai/DECISIONS/DECISIONS.md
-   docs/ai/DECISIONS/ADR-0001-TITLE.md
+   `<AI_ROOT_PATH>/DECISIONS/DECISIONS.md`
+   `<AI_ROOT_PATH>/DECISIONS/ADR-0001-TITLE.md`
    See `AI-RULES/DOWNSTREAM-PROJECT.md` for guidance.
 6. Create entry points for other AI tools:
    - `CLAUDE.md` (Claude Code)
    - `.github/copilot-instructions.md` (GitHub Copilot)
 7. Replace this template content in `AGENTS.md` with the final references:
    - Baseline: `<AI_RULES_PATH>/AI.md`
-   - Overlay: AI_PROJECT.md
+   - Downstream extension: `<AI_PROJECT_PATH>/AI.md`
 8. Commit and push the changes.
 
 Git update note:
@@ -160,7 +169,10 @@ Git update note:
   and commit the update.
 
 ## Entry Point Templates
-Note: Replace `<AI_RULES_PATH>` with `docs/ai/AI-RULES`.
+Note: Replace placeholders with actual paths:
+- `<AI_ROOT_PATH>` => `docs/ai`
+- `<AI_RULES_PATH>` => `docs/ai/AI-RULES`
+- `<AI_PROJECT_PATH>` => `docs/ai/PROJECT`
 
 ### CLAUDE.md
 ```
@@ -168,7 +180,7 @@ Note: Replace `<AI_RULES_PATH>` with `docs/ai/AI-RULES`.
 
 Use the shared AI rules located at:
 - Baseline: <AI_RULES_PATH>/AI.md
-- Overlay: AI_PROJECT.md
+- Downstream extension: <AI_PROJECT_PATH>/AI.md
 ```
 
 ### .github/copilot-instructions.md
@@ -177,7 +189,7 @@ Use the shared AI rules located at:
 
 Use the shared AI rules located at:
 - Baseline: <AI_RULES_PATH>/AI.md
-- Overlay: AI_PROJECT.md
+- Downstream extension: <AI_PROJECT_PATH>/AI.md
 ```
 
 > Note: The Copilot PR Review bot draws context from repository instructions.

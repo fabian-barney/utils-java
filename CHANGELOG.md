@@ -6,6 +6,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+## [v4.3.0] - 2026-02-13
+- Added architecture guidance for CQRS in `ARCHITECTURE/CQRS.md` and linked it
+  from the architecture index.
+- Added downstream override guidance in `AI-RULES/DOWNSTREAM-OVERRIDES.md`,
+  including deterministic markdown reachability validation for project-owned AI
+  extensions.
+- Added a dedicated PR review loop guide in `AI-RULES/PR-REVIEW-LOOP.md` and
+  repository Copilot instructions entrypoint guidance.
+- Expanded lessons learned with guidance for GitHub issue newline escaping,
+  avoiding `@copilot` mentions in PR comments, and retriggering Copilot
+  re-review after fix pushes.
+- Clarified TypeScript class member ordering for JSDoc blocks and decorators.
+
+## [v4.2.0] - 2026-02-08
+- Added a canonical semantic dependency tree and explicit layer contracts across
+  core/language/framework/library/build-tools/infrastructure/CI-CD/design/review
+  guidance.
+- Expanded baseline language and cross-cutting rules into deep, agent-focused
+  guidance (including JavaScript, TypeScript, Java, HTML, CSS, SQL, YAML, Shell,
+  security, testing, and logging).
+- Added and expanded deep guidance for architecture, framework, library, build,
+  and infrastructure topics, including framework-specific Angular/React/Svelte
+  guardrails and extensive Java ecosystem/library coverage.
+- Refined documentation quality and consistency through broad Copilot review
+  backfills, schema/interop clarifications, terminology cleanup, and encoding
+  fixes.
+
 ## [v4.1.0] - 2026-02-07
 - Added deterministic `REF` resolution/validation guidance for setup/update
   flows, including explicit fallback behavior.
