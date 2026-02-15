@@ -70,6 +70,25 @@ Security is a non-negotiable baseline across all stacks and domains.
 7. Logging secrets or sensitive personal data.
 8. Disabling security checks for convenience without tracked exceptions.
 
+## Do / Don't Examples
+### 1. Authorization Boundary
+```text
+Don't: trust hidden UI controls or client checks as access control.
+Do:    enforce authorization on trusted server-side boundaries.
+```
+
+### 2. Input Handling
+```text
+Don't: build SQL/HTML/shell output from raw user input strings.
+Do:    validate at boundaries and use parameterized/context-encoded output.
+```
+
+### 3. Secrets and Logs
+```text
+Don't: log bearer tokens, passwords, or full sensitive payloads.
+Do:    redact secrets and log only safe identifiers/reasons.
+```
+
 ## Code Review Checklist
 - Are all external inputs validated at trust boundaries?
 - Are output sinks context-encoded/escaped appropriately?

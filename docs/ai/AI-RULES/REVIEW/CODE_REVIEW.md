@@ -8,8 +8,16 @@ Guidance for AI agents performing code and rules-document reviews.
 
 ## Semantic Dependencies
 - Inherit review-layer boundary from `REVIEW/REVIEW.md`.
-- Inherit all applicable technical constraints from relevant language/framework/
-  library/build/infra docs.
+- Inherit dependency order and cross-cutting baseline from
+  `CORE/RULE_DEPENDENCY_TREE.md`.
+- Resolve applicable constraints through index docs:
+  `LANGUAGE/LANGUAGE.md`, `DESIGN/DESIGN.md`,
+  `ARCHITECTURE/ARCHITECTURE.md`, `FRAMEWORK/FRAMEWORK.md`,
+  `LIBRARY/LIBRARY.md`, `BUILD_TOOLS/BUILD_TOOLS.md`,
+  `INFRASTRUCTURE/INFRASTRUCTURE.md`, and `CI-CD/CI-CD.md`.
+- Apply corresponding specialized leaf rules under `LANGUAGE/**`,
+  `DESIGN/**`, `ARCHITECTURE/**`, `FRAMEWORK/**`, `LIBRARY/**`,
+  `BUILD_TOOLS/**`, `INFRASTRUCTURE/**`, and `CI-CD/**`.
 - Inherit security/testing/compliance constraints and priority direction from
   `SECURITY/SECURITY.md`, `TEST/TEST.md`, `COMPLIANCE/COMPLIANCE.md`.
 - Severity levels are defined by this document's local severity model.

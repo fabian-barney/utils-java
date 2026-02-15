@@ -26,6 +26,17 @@ Guidance for AI agents implementing and reviewing Java code.
 - Prefer explicit domain-specific types over primitive obsession.
 - Prefer checked validation and fail-fast preconditions at boundaries.
 
+## Exact Numeric Domains (Money, Rates, Quantities)
+- Do not use `float`/`double` when values must stay exact (for example money).
+- Prefer smallest-unit integers (for example cents in `long`) when unit and
+  range are stable for the domain.
+- If smallest-unit integers are not suitable, prefer dedicated libraries (for
+  example Joda-Money or JavaMoney/Moneta) over ad-hoc `BigDecimal` handling.
+- Avoid `new BigDecimal(double)`; if `BigDecimal` is unavoidable, construct
+  from `String` for exact decimal values, or use `BigDecimal.valueOf(long)` for
+  whole-number smallest-unit amounts, and centralize scale + rounding rules.
+- Keep unit/currency attached to the amount type to prevent accidental mixing.
+
 ## Nullability and Optional
 - Avoid returning `null` from public APIs where absence is expected;
   prefer `Optional<T>` for return values when semantically meaningful.
@@ -82,6 +93,7 @@ Guidance for AI agents implementing and reviewing Java code.
 5. Blocking operations in shared thread pools without capacity planning.
 6. Overly clever stream chains harming readability.
 7. Implicit null contracts with no annotations/documentation.
+8. Using floating-point types for exact monetary or quantity values.
 
 ## Do / Don't Examples
 ### 1. Defensive Copying
@@ -130,6 +142,17 @@ public Optional<String> middleName() {
 }
 ```
 
+### 4. Exact Monetary Values
+```java
+// Don't: binary floating point for exact money.
+double amount = 10.10;
+BigDecimal unsafe = new BigDecimal(amount);
+
+// Do: exact domain type / exact constructor path.
+long cents = 1010L;
+BigDecimal safe = new BigDecimal("10.10");
+```
+
 ## Code Review Checklist for Java
 - Are mutability boundaries explicit and safe?
 - Are nullability contracts explicit and consistent?
@@ -139,6 +162,8 @@ public Optional<String> middleName() {
 - Are concurrency assumptions documented and safe?
 - Are stream usages readable and side-effect free?
 - Are persistence/transport concerns separated from domain where appropriate?
+- Are exact-value domains modeled with exact types (scaled integer or dedicated
+  money type) instead of `float`/`double`?
 
 ## Testing Guidance for Java
 - Test null/absence behavior for public APIs.
@@ -147,6 +172,8 @@ public Optional<String> middleName() {
 - Test concurrency-sensitive code for race and visibility risks.
 - Add regression tests for previous bug classes (state leaks, conversion errors,
   mapper issues).
+- Test rounding, scaling, and currency/unit conversion behavior for exact-value
+  domains.
 
 ## VCS Ignore Additions
 Add these when using Java build tools (if not already covered by baseline

@@ -22,10 +22,11 @@ Guidance for AI agents on writing code with low cognitive load.
 
 ## Cognitive Complexity Rules
 - Keep functions focused on one responsibility.
-- Avoid deep nesting; use guard clauses and early returns.
+- Avoid deep nesting; prefer guard clauses and early returns.
 - Split large conditional trees into named predicates or strategy objects.
 - Avoid mixing orchestration, transformation, and IO concerns in one function.
 - Prefer clear linear flow over intertwined branching.
+- Use `DESIGN/EARLY_RETURN.md` for focused early-return defaults and guardrails.
 
 ## Expression and Statement Clarity
 - Avoid cascading ternary expressions.

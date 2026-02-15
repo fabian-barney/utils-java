@@ -11,18 +11,36 @@ Guidance for AI agents executing implementation tasks.
 - Inherit testing constraints from `TEST/TEST.md`.
 - Inherit security/compliance constraints from `SECURITY/SECURITY.md` and
   `COMPLIANCE/COMPLIANCE.md`.
-- Inherit the full cross-cutting baseline per `CORE/RULE_DEPENDENCY_TREE.md`.
-- Inherit language/framework/tool specifics from relevant leaf docs.
+- Inherit dependency order and full cross-cutting baseline from
+  `CORE/RULE_DEPENDENCY_TREE.md`.
+- Resolve constraints through the relevant index docs:
+  `LANGUAGE/LANGUAGE.md`, `DESIGN/DESIGN.md`,
+  `ARCHITECTURE/ARCHITECTURE.md`, `FRAMEWORK/FRAMEWORK.md`,
+  `LIBRARY/LIBRARY.md`, `BUILD_TOOLS/BUILD_TOOLS.md`,
+  `INFRASTRUCTURE/INFRASTRUCTURE.md`, and `CI-CD/CI-CD.md`.
+- Apply corresponding specialized leaf rules under `LANGUAGE/**`,
+  `DESIGN/**`, `ARCHITECTURE/**`, `FRAMEWORK/**`, `LIBRARY/**`,
+  `BUILD_TOOLS/**`, `INFRASTRUCTURE/**`, and `CI-CD/**`.
 
 ## Default Execution Workflow
-1. Confirm behavior goals, acceptance criteria, and scope boundaries.
-2. Locate semantic parent docs using `CORE/RULE_DEPENDENCY_TREE.md` and the
-   relevant index docs (`LANGUAGE/LANGUAGE.md`, `FRAMEWORK/FRAMEWORK.md`,
-   `LIBRARY/LIBRARY.md`, `BUILD_TOOLS/BUILD_TOOLS.md`).
-3. Design minimal-change implementation path.
-4. Implement with explicit error handling and observability where relevant.
-5. Add/update tests and run verification.
-6. Summarize changes, risks, and validation evidence.
+1. Verify hard preconditions before implementation:
+   - A plan exists (see `PLAN/PLAN.md`).
+   - The work is mapped to an issue/ticket.
+   - Work is on a dedicated non-default branch for that issue/ticket.
+   - If any precondition is missing, stop implementation and either establish
+     the missing precondition first or, if impossible due to
+     permissions/tooling/VCS policy, stop and report `BLOCKED` as defined in
+     `CORE/VERSION_CONTROL_SYSTEM.md`.
+2. Confirm behavior goals, acceptance criteria, and scope boundaries.
+3. Locate semantic parent docs using `CORE/RULE_DEPENDENCY_TREE.md` and the
+   relevant index docs (`LANGUAGE/LANGUAGE.md`, `DESIGN/DESIGN.md`,
+   `ARCHITECTURE/ARCHITECTURE.md`, `FRAMEWORK/FRAMEWORK.md`,
+   `LIBRARY/LIBRARY.md`, `BUILD_TOOLS/BUILD_TOOLS.md`,
+   `INFRASTRUCTURE/INFRASTRUCTURE.md`, `CI-CD/CI-CD.md`).
+4. Design minimal-change implementation path.
+5. Implement with explicit error handling and observability where relevant.
+6. Add/update tests and run verification.
+7. Summarize changes, risks, and validation evidence.
 
 ## Implementation Quality Rules
 - Keep changes scoped; avoid unrelated refactors.
@@ -47,6 +65,8 @@ Guidance for AI agents executing implementation tasks.
 - Update user/developer docs when behavior or usage changes.
 - Keep commit/PR summaries explicit about what changed and why.
 - Document notable tradeoffs and deferred follow-ups.
+- Include the completion status contract defined in
+  `CORE/VERSION_CONTROL_SYSTEM.md`.
 
 ## High-Risk Pitfalls
 1. Implementing without reading semantic parent rules.
