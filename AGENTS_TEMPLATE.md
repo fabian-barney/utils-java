@@ -17,7 +17,7 @@ To switch modes later, use "mode ai-rules local" or "mode ai-rules git".
 
 ### Paths
 Use these placeholders consistently:
-- `<AI_ROOT_PATH>` = `docs/ai`
+- `<AI_ROOT_PATH>` = `ai`
 - `<AI_RULES_PATH>` = `<AI_ROOT_PATH>/AI-RULES`
 - `<AI_PROJECT_PATH>` = `<AI_ROOT_PATH>/PROJECT`
 
@@ -33,7 +33,7 @@ Before any `git subtree add`/`git subtree pull` command:
 
 ### Resolve REF (deterministic)
 Use this before any `git subtree add/pull` command:
-- If the user specifies a tag (for example `v4.3.0`), validate it:
+- If the user specifies a tag (for example `v4.7.0`), validate it:
   `git ls-remote --exit-code --refs --tags https://github.com/fabian-barney/ai-rules.git "refs/tags/<TAG>"`
   - If valid, set `REF=<TAG>`.
   - If invalid, stop and ask for a valid tag.
@@ -100,12 +100,12 @@ version and adapt behavior as needed:
    Verify transitive reachability for markdown files under `<AI_PROJECT_PATH>`
    using `AI-RULES/DOWNSTREAM-OVERRIDES.md`.
 6. Create a project lessons learned area (recommended):
-   `<AI_ROOT_PATH>/LESSONS_LEARNED/LESSONS_LEARNED.md`
+   `<AI_PROJECT_PATH>/LESSONS_LEARNED/LESSONS_LEARNED.md`
    See `AI-RULES/DOWNSTREAM-PROJECT.md` and
    `AI-RULES/DOWNSTREAM-OVERRIDES.md` for guidance.
 7. Create a project ADR area (recommended):
-   `<AI_ROOT_PATH>/DECISIONS/DECISIONS.md`
-   `<AI_ROOT_PATH>/DECISIONS/ADR-0001-TITLE.md`
+   `<AI_PROJECT_PATH>/DECISIONS/DECISIONS.md`
+   `<AI_PROJECT_PATH>/DECISIONS/ADR-0001-TITLE.md`
    See `AI-RULES/DOWNSTREAM-PROJECT.md` for guidance.
 8. Create entry points for other AI tools:
    - `CLAUDE.md` (Claude Code)
@@ -149,12 +149,12 @@ Local-only update note:
    Verify transitive reachability for markdown files under `<AI_PROJECT_PATH>`
    using `AI-RULES/DOWNSTREAM-OVERRIDES.md`.
 4. Create a project lessons learned area (recommended):
-   `<AI_ROOT_PATH>/LESSONS_LEARNED/LESSONS_LEARNED.md`
+   `<AI_PROJECT_PATH>/LESSONS_LEARNED/LESSONS_LEARNED.md`
    See `AI-RULES/DOWNSTREAM-PROJECT.md` and
    `AI-RULES/DOWNSTREAM-OVERRIDES.md` for guidance.
 5. Create a project ADR area (recommended):
-   `<AI_ROOT_PATH>/DECISIONS/DECISIONS.md`
-   `<AI_ROOT_PATH>/DECISIONS/ADR-0001-TITLE.md`
+   `<AI_PROJECT_PATH>/DECISIONS/DECISIONS.md`
+   `<AI_PROJECT_PATH>/DECISIONS/ADR-0001-TITLE.md`
    See `AI-RULES/DOWNSTREAM-PROJECT.md` for guidance.
 6. Create entry points for other AI tools:
    - `CLAUDE.md` (Claude Code)
@@ -170,9 +170,9 @@ Git update note:
 
 ## Entry Point Templates
 Note: Replace placeholders with actual paths:
-- `<AI_ROOT_PATH>` => `docs/ai`
-- `<AI_RULES_PATH>` => `docs/ai/AI-RULES`
-- `<AI_PROJECT_PATH>` => `docs/ai/PROJECT`
+- `<AI_ROOT_PATH>` => `ai`
+- `<AI_RULES_PATH>` => `ai/AI-RULES`
+- `<AI_PROJECT_PATH>` => `ai/PROJECT`
 
 ### CLAUDE.md
 ```
@@ -195,6 +195,3 @@ Use the shared AI rules located at:
 > Note: The Copilot PR Review bot draws context from repository instructions.
 > Keeping `.github/copilot-instructions.md` present and pointed at the baseline
 > increases the chance it uses the same rules.
-
-## Access
-This repository is private; ensure your GitHub account has access.

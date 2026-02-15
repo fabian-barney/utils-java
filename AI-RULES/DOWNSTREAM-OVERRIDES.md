@@ -13,10 +13,10 @@ be authored by AI agents.
   - `<AI_RULES_PATH>`
   - `<AI_PROJECT_PATH>`
 - Default mapping:
-  - `<AI_ROOT_PATH>=docs/ai`
+  - `<AI_ROOT_PATH>=ai`
   - `<AI_RULES_PATH>=<AI_ROOT_PATH>/AI-RULES`
   - `<AI_PROJECT_PATH>=<AI_ROOT_PATH>/PROJECT`
-- Never hardcode `docs/ai` when placeholders are available.
+- Never hardcode `ai` when placeholders are available.
 
 ## Extension Semantics and Conflict Precedence
 - Baseline rules under `<AI_RULES_PATH>` remain authoritative defaults.

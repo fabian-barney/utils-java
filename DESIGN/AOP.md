@@ -21,6 +21,8 @@ Guidance for AI agents applying Aspect-Oriented Programming responsibly.
 
 ## Boundaries and Guardrails
 - Keep domain business rules out of aspects.
+- Keep method responsibilities cohesive ("do one thing") so join points remain
+  explicit at method boundaries.
 - Keep pointcuts narrow, explicit, and auditable.
 - Keep aspect ordering deterministic when multiple aspects apply.
 - Keep side effects observable and documented.
@@ -28,6 +30,8 @@ Guidance for AI agents applying Aspect-Oriented Programming responsibly.
 
 ## Aspect Design Rules
 - Keep advice logic small and focused.
+- Keep cross-cutting seams at clear method contracts; avoid embedding multiple
+  unrelated concerns inside one large method body.
 - Avoid mutating method arguments/results unless explicitly intended.
 - Preserve exception semantics unless mapping is deliberate.
 - Keep aspect configuration centralized and discoverable.
@@ -38,6 +42,8 @@ Guidance for AI agents applying Aspect-Oriented Programming responsibly.
 3. Undocumented aspect ordering conflicts.
 4. Aspects swallowing exceptions and hiding failures.
 5. Performance overhead from heavy around-advice on hot paths.
+6. Mixed-responsibility methods where desired cross-cutting boundary exists
+   only inside method internals (not at method contracts).
 
 ## Do / Don't Examples
 ### 1. Cross-Cutting Classification
@@ -58,12 +64,22 @@ Don't: catch and ignore exceptions in advice.
 Do:    log/annotate and rethrow or map intentionally.
 ```
 
+### 4. Clean-Code Boundary Readiness
+```text
+Don't: keep validation, domain mutation, and notification side effects in one
+       method, then expect AOP to target only one inner block.
+Do:    split responsibilities into focused methods so pointcuts can bind at
+       clear method contracts.
+```
+
 ## Code Review Checklist for AOP
 - Is concern truly cross-cutting and reusable?
 - Are pointcuts narrow and intentional?
 - Is aspect ordering defined and safe?
 - Are side effects/exception semantics explicit?
 - Is aspect behavior observable through logs/metrics/tests?
+- Is base code organized with cohesive methods so pointcuts can target
+  contract-level boundaries cleanly?
 - Would explicit composition be clearer than AOP for this case?
 
 ## Testing Guidance

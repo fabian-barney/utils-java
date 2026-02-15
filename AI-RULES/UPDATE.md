@@ -4,11 +4,11 @@ Instructions for AI agents to update ai-rules in a downstream-project.
 
 ## Prompt Examples
 - "update ai-rules"
-- "update ai-rules v4.3.0"
+- "update ai-rules v4.7.0"
 
 ## REF Determination Rules
 Use these rules whenever a setup/update/mode-switch flow needs a `REF`.
-- If the user specifies a tag (for example `v4.3.0`), validate it first:
+- If the user specifies a tag (for example `v4.7.0`), validate it first:
   `git ls-remote --exit-code --refs --tags https://github.com/fabian-barney/ai-rules.git "refs/tags/<TAG>"`
   - If the command fails, stop and ask for a valid tag.
   - If it succeeds, set `REF=<TAG>`.
@@ -25,8 +25,8 @@ Use these rules whenever a setup/update/mode-switch flow needs a `REF`.
 
 ## Update Steps (run when requested)
 1. Locate the vendored ai-rules path and entry point from `AGENTS.md` or README.
-   - Set `<AI_ROOT_PATH>` to the repo-relative ai docs root (for example
-     `docs/ai`).
+   - Set `<AI_ROOT_PATH>` to the repo-relative ai root path (for example
+     `ai`).
    - Set `<AI_RULES_PATH>` to the baseline path (for example
      `<AI_ROOT_PATH>/AI-RULES`).
    - Set `<AI_PROJECT_PATH>` to the downstream extension path (for example
@@ -35,9 +35,9 @@ Use these rules whenever a setup/update/mode-switch flow needs a `REF`.
    - Every time this guide shows `<AI_PROJECT_PATH>`, replace it with that real
      path.
    - For `.git/info/exclude`, the matching directory entry is `/<AI_RULES_PATH>/`
-     (for example `/docs/ai/AI-RULES/`).
+     (for example `/ai/AI-RULES/`).
    - For downstream extensions in local mode, the matching directory entry is
-     `/<AI_PROJECT_PATH>/` (for example `/docs/ai/PROJECT/`).
+     `/<AI_PROJECT_PATH>/` (for example `/ai/PROJECT/`).
 2. Enforce a clean-working-tree precondition before subtree operations:
    - Run `git status --porcelain`.
    - If output is empty, continue.
@@ -52,7 +52,7 @@ Use these rules whenever a setup/update/mode-switch flow needs a `REF`.
      - `TRACKED_SUBTREE=true` if `git ls-files -- "<AI_RULES_PATH>/AI.md"` returns a tracked file.
      - `LOCAL_HINT=true` if `.git/info/exclude` contains the subtree directory
        entry `/<AI_RULES_PATH>/` (replace with the real path; example:
-       `/docs/ai/AI-RULES/`).
+       `/ai/AI-RULES/`).
        Companion excludes (for example `/AGENTS.md`, `/<AI_PROJECT_PATH>/`,
        `/CLAUDE.md`, `/.github/copilot-instructions.md`) are optional and do not
        affect `LOCAL_HINT`.
@@ -90,6 +90,12 @@ Use these rules whenever a setup/update/mode-switch flow needs a `REF`.
        including `TARGET_VERSION`.
    - Identify breaking or behavior-changing entries (for example path renames,
      entry-point changes, setup/update workflow changes, mode semantics changes).
+   - Compare target-version directory/file structure expectations for both:
+     - baseline vendor content under `<AI_RULES_PATH>/`
+     - downstream overrides under `<AI_PROJECT_PATH>/`
+   - Derive required structure-migration actions ad-hoc from those detected
+     differences and the current downstream-project state. Do not rely on a
+     fixed migration checklist for structure changes in this ruleset.
    - Adapt the setup/update commands and file operations before execution.
    - Summarize the detected changes and adapted execution plan before proceeding.
    - If the target-version docs cannot be inspected, stop and ask the user how
@@ -136,12 +142,36 @@ Use these rules whenever a setup/update/mode-switch flow needs a `REF`.
       `<AI_PROJECT_PATH>` using the deterministic docs-only method in
       [AI-RULES/DOWNSTREAM-OVERRIDES.md](DOWNSTREAM-OVERRIDES.md).
 11. Run cleanup for stale legacy references:
-    - Remove or update references that still point to `AI_PROJECT.md`.
-    - Ensure generated/final references point to `<AI_PROJECT_PATH>/AI.md`.
+    - Identify outdated files, directories, and references left from earlier
+      setup/update states.
+    - Remove or update stale items based on current downstream-project
+      structure and preflight findings.
+    - Validate that entry and ignore files no longer contain stale path
+      references (for example `AGENTS.md`, `CLAUDE.md`,
+      `.github/copilot-instructions.md`, and `.git/info/exclude`).
+    - Ensure generated/final references point to the currently resolved
+      baseline and downstream extension entry points.
 12. Preserve local extensions and any project-specific rules outside the vendor
-    path, including `<AI_ROOT_PATH>/LESSONS_LEARNED/` if used.
+    path, including `<AI_PROJECT_PATH>/LESSONS_LEARNED/` and
+    `<AI_PROJECT_PATH>/DECISIONS/` if used.
 13. Record the updated version in the destination repository if it tracks versions.
 14. Summarize changes.
+
+## Completion Gates (required before closing an update)
+- Structure alignment gate:
+  - The downstream-project directory/file layout matches target-version
+    expectations from preflight for both `<AI_RULES_PATH>/` and
+    `<AI_PROJECT_PATH>/`.
+- Git-subtree location gate (git mode only):
+  - `<AI_RULES_PATH>/AI.md` is tracked.
+  - No stale tracked ai-rules vendor path from an old structure remains.
+- Stale-reference gate:
+  - No stale path reference remains in baseline/downstream entry files or ignore
+    files (at minimum `AGENTS.md`, `CLAUDE.md`,
+    `.github/copilot-instructions.md`, `.git/info/exclude`).
+- Final consistency gate:
+  - Baseline and downstream entry points resolve to the currently installed
+    structure and all preflight-detected migration items are complete.
 
 ## Mode Switch (when requested)
 Prompt Examples:
@@ -163,7 +193,7 @@ Steps:
       Note: `<AI_PROJECT_PATH>/` is shared/tracked in git mode. Switching to
       local intentionally converts it to local-only (untracked).
    - Add the local excludes to `.git/info/exclude` (keep the file intact):
-     (Replace `/<AI_RULES_PATH>/` with the real path; example: `/docs/ai/AI-RULES/`.)
+     (Replace `/<AI_RULES_PATH>/` with the real path; example: `/ai/AI-RULES/`.)
      /<AI_RULES_PATH>/
      /<AI_PROJECT_PATH>/
      /AGENTS.md
@@ -177,7 +207,7 @@ Steps:
 3. If switching to git:
    - If already git, stop.
    - Remove the ai-rules entries from `.git/info/exclude` (keep the file intact):
-     (Replace `/<AI_RULES_PATH>/` with the real path; example: `/docs/ai/AI-RULES/`.)
+     (Replace `/<AI_RULES_PATH>/` with the real path; example: `/ai/AI-RULES/`.)
      /<AI_RULES_PATH>/
      /<AI_PROJECT_PATH>/
      /AGENTS.md

@@ -4,7 +4,65 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+Sub-heading template:
+- Unreleased section: `## Unreleased`
+- Released versions: `## [vX.Y.Z] - YYYY-MM-DD`
+
 ## Unreleased
+
+## [v4.7.0] - 2026-02-15
+- Strengthened `AI-RULES/UPDATE.md` with explicit structure-adaptation guidance
+  for baseline and downstream override directory/file changes, requiring ad-hoc
+  migration planning from preflight findings instead of a fixed checklist.
+- Added required update completion gates for structure alignment, git-subtree
+  location validation (git mode), and stale-reference cleanup in entry/ignore
+  files.
+
+## [v4.6.0] - 2026-02-15
+- Changed the default downstream base directory placeholder from `docs/ai` to
+  `ai` across setup/template/update guidance.
+- Hardened shared workflow policy to require plan-first execution, dedicated
+  issue branch + PR/MR flow, and explicit completion status reporting fields.
+- Added repository PR-loop preconditions to consume shared plan/VCS rules
+  without redefining downstream-project guidance scope.
+- Standardized release-note sub-heading formatting guidance in
+  `AI-RULES/RELEASE.md` to enforce a single canonical heading template.
+- Fixed duplicated/triplicated release-note top headings by deduplicating
+  existing GitHub release-note sub-headings.
+
+## [v4.5.0] - 2026-02-15
+- Added session entry preferences and execution controls in
+  `AI-RULES/PR-REVIEW-LOOP.md` for review-loop execution, plan-to-implementation
+  autonomy, and optional merge-after-clean-loop behavior.
+- Expanded `PLAN/PLAN.md` with stronger planning dependencies, architecture-first
+  focus, and explicit research requirements to reduce shallow planning.
+- Clarified inherited constraint resolution in `PROGRAMMING/PROGRAMMING.md` and
+  `REVIEW/CODE_REVIEW.md` by explicitly requiring index-doc and leaf-doc
+  traversal across language, design, architecture, framework, library, build,
+  infrastructure, and CI/CD guidance.
+- Updated repository security policy in `SECURITY.md` to support only the latest
+  tagged release and to use best-effort triage timing (no fixed SLA).
+- Removed outdated private-repository access guidance from
+  `AGENTS_TEMPLATE.md`.
+
+## [v4.4.0] - 2026-02-14
+- Added repository-level security disclosure guidance in `SECURITY.md` for
+  supported versions and coordinated vulnerability reporting.
+- Added design guidance for cognitive complexity and early returns in
+  `DESIGN/COGNITIVE_COMPLEXITY.md` and `DESIGN/EARLY_RETURN.md`, and linked both
+  in design/dependency docs.
+- Hardened `AI-RULES/PR-REVIEW-LOOP.md` merge gates and replaced placeholder
+  review-trigger guidance with an executable `requestReviewsByLogin` GraphQL
+  mutation flow.
+- Updated downstream-project path guidance to keep project lessons learned and
+  ADRs under `<AI_PROJECT_PATH>/...` across setup/update/template docs.
+- Expanded language/design quality guidance, including semantic type preference
+  in `LANGUAGE/CONVENTIONS.md` and exact numeric handling in
+  `LANGUAGE/JAVA/JAVA.md`.
+- Added explicit deep-doc contract sections in `FRAMEWORK/ANGULAR.md` and
+  `FRAMEWORK/REACT.md`.
+- Added `Do / Don't Examples` sections to `SECURITY/SECURITY.md` and
+  `TEST/TEST.md` to align with deep technical doc requirements.
 
 ## [v4.3.0] - 2026-02-13
 - Added architecture guidance for CQRS in `ARCHITECTURE/CQRS.md` and linked it
@@ -71,14 +129,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Clarified update/setup path placeholder handling, including copy-paste-safe
   `.git/info/exclude` examples.
 - Added readability guidance forbidding nested/chained ternary expressions.
-- Added downstream-project ADR guidance under `docs/ai/DECISIONS/` and
+- Added downstream-project ADR guidance under `<AI_PROJECT_PATH>/DECISIONS/` and
   clarified downstream-project terminology.
 - Clarified scope boundaries between repository governance files and
   downstream-project operational guidance.
 
 ## [v3.0.0] - 2026-02-05
 - Breaking: flattened repo layout with `AI.md` at the repo root and subtree prefix
-  guidance updated to `docs/ai/AI-RULES`.
+  guidance updated to `<AI_RULES_PATH>`.
 - Added PROGRAMMING, PLAN, and CODE_REVIEW guidance with stricter review expectations.
 - Added downstream-project guidance for lessons learned placement and maintenance rules.
 - Added test fixture separation guidance and markdownlint hygiene updates.

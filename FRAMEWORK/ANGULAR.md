@@ -2,6 +2,22 @@
 
 Guidance for AI agents implementing and reviewing Angular projects.
 
+## Scope
+- Define Angular-specific component, template, reactive-state, and runtime rules.
+- Apply this file to Angular implementation and review tasks.
+
+## Semantic Dependencies
+- Inherit JavaScript/TypeScript baselines from
+  `LANGUAGE/JAVASCRIPT/JAVASCRIPT.md` and
+  `LANGUAGE/TYPESCRIPT/TYPESCRIPT.md`.
+- Inherit HTML/CSS accessibility and semantics from
+  `LANGUAGE/HTML/HTML.md` and `LANGUAGE/CSS/CSS.md`.
+- Inherit architecture constraints from
+  `ARCHITECTURE/CLEAN_ARCHITECTURE.md` and `ARCHITECTURE/REST.md` where
+  relevant.
+- Inherit cross-cutting constraints from
+  `SECURITY/SECURITY.md`, `TEST/TEST.md`, `CORE/LOGGING.md`.
+
 ## Defaults
 - Follow Angular style guide conventions.
 - Prefer standalone APIs (`bootstrapApplication`, standalone components,
@@ -401,3 +417,8 @@ export class ProfileCardGood {
   signals instead of manual `detectChanges()` defaults.
 - If SSR/hydration is relevant, test browser-global guards and hydration-safe
   render paths.
+
+## Override Notes
+- Project-specific Angular conventions may add stricter structure or delivery
+  constraints, but reactivity clarity, cleanup safety, and SSR/hydration
+  guardrails remain mandatory.

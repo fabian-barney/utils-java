@@ -1,6 +1,19 @@
 # REACT
 
-Guidance for React projects.
+Guidance for AI agents implementing and reviewing React projects.
+
+## Scope
+- Define React-specific component, rendering, and side-effect rules.
+- Apply this file to React implementation and review tasks.
+
+## Semantic Dependencies
+- Inherit JavaScript baseline from `LANGUAGE/JAVASCRIPT/JAVASCRIPT.md`.
+- Apply `LANGUAGE/TYPESCRIPT/TYPESCRIPT.md` as an additional parent when the
+  React codebase uses TypeScript.
+- Inherit HTML/CSS accessibility and semantics from
+  `LANGUAGE/HTML/HTML.md` and `LANGUAGE/CSS/CSS.md`.
+- Inherit cross-cutting constraints from
+  `SECURITY/SECURITY.md`, `TEST/TEST.md`, `CORE/LOGGING.md`.
 
 ## Defaults
 - Use functional components and hooks.
@@ -304,3 +317,7 @@ function WindowWidthGood() {
 - Test behavior under `StrictMode` for duplicate setup/cleanup safety.
 - Test that user-intent side effects happen from handlers, not watcher effects.
 - If SSR/hydration is relevant, test render paths that avoid browser globals.
+
+## Override Notes
+- Project-specific React conventions may add stricter patterns, but effect
+  safety, dependency clarity, and SSR/hydration guardrails remain mandatory.

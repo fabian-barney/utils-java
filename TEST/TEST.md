@@ -69,6 +69,25 @@ Defines baseline testing expectations for all stacks and domains.
 6. Ignoring error-path and boundary-condition testing.
 7. Claiming confidence from coverage metrics without assertion quality.
 
+## Do / Don't Examples
+### 1. Behavior Change Coverage
+```text
+Don't: merge a behavior change without updating tests.
+Do:    add/adjust tests for happy path, edge cases, and failure paths.
+```
+
+### 2. Flakiness Control
+```text
+Don't: rerun flaky tests until green and call it stable.
+Do:    quarantine/fix flaky tests and remove nondeterministic dependencies.
+```
+
+### 3. Assertion Quality
+```text
+Don't: rely only on snapshots for critical behavior.
+Do:    use explicit assertions tied to business-relevant outcomes.
+```
+
 ## Code Review Checklist for Testing
 - Do behavior changes include corresponding tests?
 - Are tests deterministic and independent of execution order?

@@ -62,11 +62,21 @@ Apply language-standard casing as default:
 - Prefer expanding obscure domain shorthand in public APIs.
 
 ## Identifier Quality Rules
+- Prefer semantic/domain types over raw basic types (`String`, numeric types)
+  when language/runtime/library support makes that practical.
 - Boolean names should read as predicates (`isActive`, `hasAccess`).
 - Collections should use plural names.
-- Temporal values should include units (`timeoutMs`, `expiresAt`).
+- Temporal values should prefer temporal types (for example Java `Duration`)
+  over primitive numerics when feasible.
+- If basic numeric/string fields are still required, keep unit/domain semantics
+  explicit in naming (`timeoutMs`, `expiresAt`, `orderId`).
 - Avoid misleading names that imply stronger guarantees than implementation.
 - Avoid generic names (`data`, `result`, `temp`) unless scope is tiny and clear.
+
+Pragmatic exceptions where basic types may be required:
+- External API/serialization contracts that mandate primitive/string shapes.
+- Performance-critical hot paths where domain-wrapper overhead is material.
+- Interop boundaries where richer types would add unsafe conversion churn.
 
 ## Comment and Documentation Naming
 - Keep comment terminology aligned with code identifiers.
@@ -98,7 +108,19 @@ Don't: retryTimeout = 5
 Do:    retryTimeoutSeconds = 5
 ```
 
-### 3. Generic Naming
+### 3. Prefer Semantic Type (Temporal)
+```text
+Don't: long timeoutMs = 5000;
+Do:    Duration timeout = Duration.ofSeconds(5);
+```
+
+### 4. Prefer Semantic Type (Non-Temporal)
+```text
+Don't: String orderId;
+Do:    OrderId orderId;
+```
+
+### 5. Generic Naming
 ```text
 Don't: process(data)
 Do:    processInvoiceBatch(invoiceBatch)
@@ -109,7 +131,8 @@ Do:    processInvoiceBatch(invoiceBatch)
 - Are naming decisions descriptive and consistent within module scope?
 - Are abbreviations necessary and consistently cased?
 - Are booleans/predicates named semantically?
-- Are numeric/time fields unit-explicit?
+- Are semantic/domain types preferred over raw basic types where feasible?
+- Are unavoidable numeric/time fields unit-explicit?
 - Are multiline formatting and trailing delimiter rules applied consistently?
 - Did refactors keep identifier names aligned across code/comments/docs?
 
@@ -122,5 +145,7 @@ Do:    processInvoiceBatch(invoiceBatch)
 ## Override Notes
 - Language docs may define stricter naming rules (for example TypeScript enum
   member casing).
+- Language docs may also define concrete preferred semantic types (for example
+  Java `Duration` or value objects) that specialize this baseline.
 - Framework/library docs may define local naming idioms, but must remain
   compatible with this baseline and language standards.
