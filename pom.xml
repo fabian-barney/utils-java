@@ -6,12 +6,12 @@
   <name>utils-java</name>
   <description>Utility classes you do not want to miss in any project.</description>
   <properties>
-    <crap4java.version>0.1.2</crap4java.version>
+    <crap-java.version>0.2.0</crap-java.version>
   </properties>
   <pluginRepositories>
     <pluginRepository>
       <id>github</id>
-      <url>https://maven.pkg.github.com/fabian-barney/crap4java</url>
+      <url>https://maven.pkg.github.com/fabian-barney/crap-java</url>
     </pluginRepository>
   </pluginRepositories>
   <dependencies>
@@ -41,8 +41,8 @@
       </plugin>
       <plugin>
         <groupId>media.barney</groupId>
-        <artifactId>crap4java-maven-plugin</artifactId>
-        <version>${crap4java.version}</version>
+        <artifactId>crap-java-maven-plugin</artifactId>
+        <version>${crap-java.version}</version>
         <executions>
           <execution>
             <goals>
