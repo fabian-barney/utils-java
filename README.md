@@ -5,8 +5,8 @@ units across byte- and bit-based scales.
 
 It includes:
 
-- `ByteUnit` for byte units such as `BYTE`, `KiB`, `MiB`, `kB`, and `MB`
-- `BitUnit` for bit units such as `BIT`, `Kibit`, `Mibit`, `kbit`, and `Mbit`
+- `ByteUnit` for byte units such as `BYTE`, `KIB`, `MIB`, `KB`, and `MB`
+- `BitUnit` for bit units such as `BIT`, `KIBIT`, `MIBIT`, `KBIT`, and `MBIT`
 - cross-conversion helpers between byte and bit units
 - overloads that accept a custom word size instead of assuming `Byte.SIZE`
 
