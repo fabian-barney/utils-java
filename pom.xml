@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>media.barney</groupId>
-  <artifactId>utils-java</artifactId>
+  <artifactId>barney-utils</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Utils (Java)</name>
+  <name>Barney Utils</name>
   <description>Utility classes you do not want to miss in any project.</description>
   <properties>
     <crap4java.version>0.1.2</crap4java.version>
