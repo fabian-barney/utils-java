@@ -41,8 +41,8 @@ jobs:
       - name: Run Maven test
         run: ./mvnw -B -ntp test
 
-  crap4java:
-    name: Crap4Java Gate
+  crap-java:
+    name: crap-java Gate
     if: ${{ github.event.pull_request.draft == false }}
     runs-on: ubuntu-latest
     env:
@@ -63,5 +63,5 @@ jobs:
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
 
-      - name: Run Crap4Java gate
-        run: ./mvnw -B -ntp crap4java:check
+      - name: Run crap-java gate
+        run: ./mvnw -B -ntp crap-java:check
