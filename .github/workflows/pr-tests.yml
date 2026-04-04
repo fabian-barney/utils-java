@@ -38,8 +38,8 @@ jobs:
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
 
-      - name: Run Maven test
-        run: ./mvnw -B -ntp test
+      - name: Run Maven test with NullAway
+        run: ./mvnw -B -ntp -Pnullaway test
 
   crap-java:
     name: crap-java Gate

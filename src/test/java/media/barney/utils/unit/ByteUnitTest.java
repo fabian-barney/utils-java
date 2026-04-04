@@ -212,4 +212,16 @@ class ByteUnitTest {
                 () -> ByteUnit.GIB.toMbit(1d, bitsPerByte))
             .forEach(executable -> assertThrows(IllegalArgumentException.class, executable));
     }
+
+    @SuppressWarnings("NullAway")
+    @ParameterizedTest
+    @MethodSource("allByteUnits")
+    @DisplayName("ByteUnit conversion entry points reject null unit arguments")
+    void rejectsNullUnitArguments(ByteUnit unit) {
+        Stream.of(
+                (Executable) () -> unit.convert(1d, (ByteUnit) null),
+                () -> unit.convert(1d, (BitUnit) null),
+                () -> unit.convert(1d, (BitUnit) null, Byte.SIZE))
+            .forEach(executable -> assertThrows(NullPointerException.class, executable));
+    }
 }

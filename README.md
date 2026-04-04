@@ -29,6 +29,12 @@ On Windows:
 .\mvnw.cmd verify
 ```
 
+To run the static nullness analysis locally, enable the NullAway profile:
+
+```powershell
+.\mvnw.cmd -Pnullaway test
+```
+
 ## Usage
 
 ```java

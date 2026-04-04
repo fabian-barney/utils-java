@@ -1,5 +1,3 @@
-package media.barney.utils.unit;
-
 /*
  * Copyright 2011 Fabian Barney
  *
@@ -15,23 +13,5 @@ package media.barney.utils.unit;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-final class UnitInputValidator {
-
-    private UnitInputValidator() {
-    }
-
-    static double requireNonNegativeFinite(double value) {
-        if (value < 0 || !Double.isFinite(value)) {
-            throw new IllegalArgumentException("value must be a non-negative finite number");
-        }
-        return value;
-    }
-
-    static int requirePositiveBitsPerByte(int bitsPerByte) {
-        if (bitsPerByte <= 0) {
-            throw new IllegalArgumentException("bitsPerByte must be greater than 0");
-        }
-        return bitsPerByte;
-    }
-}
+@org.jspecify.annotations.NullMarked
+package media.barney.utils.unit;
