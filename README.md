@@ -31,6 +31,10 @@ On Windows:
 
 To run the static nullness analysis locally, enable the NullAway profile:
 
+```bash
+./mvnw -Pnullaway test
+```
+
 ```powershell
 .\mvnw.cmd -Pnullaway test
 ```
