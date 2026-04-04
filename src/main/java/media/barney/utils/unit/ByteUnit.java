@@ -40,7 +40,7 @@ public enum ByteUnit {
 
 		@Override
 		public double convert(double d, ByteUnit u) {
-			return u.toBytes(UnitInputValidator.requireNonNegativeFinite(d));
+			return u.toBytes(d);
 		}
 	},
 
@@ -51,7 +51,7 @@ public enum ByteUnit {
 
 		@Override
 		public double convert(double d, ByteUnit u) {
-			return u.toKiB(UnitInputValidator.requireNonNegativeFinite(d));
+			return u.toKiB(d);
 		}
 	},
 
@@ -62,7 +62,7 @@ public enum ByteUnit {
 
 		@Override
 		public double convert(double d, ByteUnit u) {
-			return u.toMiB(UnitInputValidator.requireNonNegativeFinite(d));
+			return u.toMiB(d);
 		}
 	},
 
@@ -73,7 +73,7 @@ public enum ByteUnit {
 
 		@Override
 		public double convert(double d, ByteUnit u) {
-			return u.toGiB(UnitInputValidator.requireNonNegativeFinite(d));
+			return u.toGiB(d);
 		}
 	},
 
@@ -84,7 +84,7 @@ public enum ByteUnit {
 
 		@Override
 		public double convert(double d, ByteUnit u) {
-			return u.toTiB(UnitInputValidator.requireNonNegativeFinite(d));
+			return u.toTiB(d);
 		}
 	},
 
@@ -95,7 +95,7 @@ public enum ByteUnit {
 
 		@Override
 		public double convert(double d, ByteUnit u) {
-			return u.toPiB(UnitInputValidator.requireNonNegativeFinite(d));
+			return u.toPiB(d);
 		}
 	},
 
@@ -106,7 +106,7 @@ public enum ByteUnit {
 
 		@Override
 		public double convert(double d, ByteUnit u) {
-			return u.toKB(UnitInputValidator.requireNonNegativeFinite(d));
+			return u.toKB(d);
 		}
 	},
 
@@ -117,7 +117,7 @@ public enum ByteUnit {
 
 		@Override
 		public double convert(double d, ByteUnit u) {
-			return u.toMB(UnitInputValidator.requireNonNegativeFinite(d));
+			return u.toMB(d);
 		}
 	},
 
@@ -128,7 +128,7 @@ public enum ByteUnit {
 
 		@Override
 		public double convert(double d, ByteUnit u) {
-			return u.toGB(UnitInputValidator.requireNonNegativeFinite(d));
+			return u.toGB(d);
 		}
 	},
 
@@ -139,7 +139,7 @@ public enum ByteUnit {
 
 		@Override
 		public double convert(double d, ByteUnit u) {
-			return u.toTB(UnitInputValidator.requireNonNegativeFinite(d));
+			return u.toTB(d);
 		}
 	},
 
@@ -150,7 +150,7 @@ public enum ByteUnit {
 
 		@Override
 		public double convert(double d, ByteUnit u) {
-			return u.toPB(UnitInputValidator.requireNonNegativeFinite(d));
+			return u.toPB(d);
 		}
 	};
 
@@ -329,7 +329,7 @@ public enum ByteUnit {
          * @return the converted value expressed in this unit
          */
         public final double convert(double d, BitUnit u, int bitsPerByte){
-                double bytes = u.toBits(UnitInputValidator.requireNonNegativeFinite(d)) / UnitInputValidator.requirePositiveBitsPerByte(bitsPerByte);
+                double bytes = u.toBits(d) / UnitInputValidator.requirePositiveBitsPerByte(bitsPerByte);
                 return convert(bytes, BYTE);
         }
 
