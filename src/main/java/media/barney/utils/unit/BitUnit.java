@@ -17,7 +17,6 @@ package media.barney.utils.unit;
  * limitations under the License.
  */
 
-import java.util.Objects;
 
 /**
  * Defines binary (power-of-two) and decimal (power-of-ten) bit units and
@@ -37,9 +36,7 @@ public enum BitUnit {
 
 		@Override
 		public double convert(double d, BitUnit u) {
-			BitUnit sourceUnit = Objects.requireNonNull(u, "u");
-			double value = UnitInputValidator.requireNonNegativeFinite(d);
-			return sourceUnit.toBits(value);
+			return u.toBits(UnitInputValidator.requireNonNegativeFinite(d));
 		}
 	},
 
@@ -50,9 +47,7 @@ public enum BitUnit {
 
 		@Override
 		public double convert(double d, BitUnit u) {
-			BitUnit sourceUnit = Objects.requireNonNull(u, "u");
-			double value = UnitInputValidator.requireNonNegativeFinite(d);
-			return sourceUnit.toKibit(value);
+			return u.toKibit(UnitInputValidator.requireNonNegativeFinite(d));
 		}
 	},
 
@@ -63,9 +58,7 @@ public enum BitUnit {
 
 		@Override
 		public double convert(double d, BitUnit u) {
-			BitUnit sourceUnit = Objects.requireNonNull(u, "u");
-			double value = UnitInputValidator.requireNonNegativeFinite(d);
-			return sourceUnit.toMibit(value);
+			return u.toMibit(UnitInputValidator.requireNonNegativeFinite(d));
 		}
 	},
 
@@ -76,9 +69,7 @@ public enum BitUnit {
 
 		@Override
 		public double convert(double d, BitUnit u) {
-			BitUnit sourceUnit = Objects.requireNonNull(u, "u");
-			double value = UnitInputValidator.requireNonNegativeFinite(d);
-			return sourceUnit.toGibit(value);
+			return u.toGibit(UnitInputValidator.requireNonNegativeFinite(d));
 		}
 	},
 
@@ -89,9 +80,7 @@ public enum BitUnit {
 
 		@Override
 		public double convert(double d, BitUnit u) {
-			BitUnit sourceUnit = Objects.requireNonNull(u, "u");
-			double value = UnitInputValidator.requireNonNegativeFinite(d);
-			return sourceUnit.toTibit(value);
+			return u.toTibit(UnitInputValidator.requireNonNegativeFinite(d));
 		}
 	},
 
@@ -102,9 +91,7 @@ public enum BitUnit {
 
 		@Override
 		public double convert(double d, BitUnit u) {
-			BitUnit sourceUnit = Objects.requireNonNull(u, "u");
-			double value = UnitInputValidator.requireNonNegativeFinite(d);
-			return sourceUnit.toPibit(value);
+			return u.toPibit(UnitInputValidator.requireNonNegativeFinite(d));
 		}
 	},
 
@@ -115,9 +102,7 @@ public enum BitUnit {
 
 		@Override
 		public double convert(double d, BitUnit u) {
-			BitUnit sourceUnit = Objects.requireNonNull(u, "u");
-			double value = UnitInputValidator.requireNonNegativeFinite(d);
-			return sourceUnit.toKbit(value);
+			return u.toKbit(UnitInputValidator.requireNonNegativeFinite(d));
 		}
 	},
 
@@ -128,9 +113,7 @@ public enum BitUnit {
 
 		@Override
 		public double convert(double d, BitUnit u) {
-			BitUnit sourceUnit = Objects.requireNonNull(u, "u");
-			double value = UnitInputValidator.requireNonNegativeFinite(d);
-			return sourceUnit.toMbit(value);
+			return u.toMbit(UnitInputValidator.requireNonNegativeFinite(d));
 		}
 	},
 
@@ -141,9 +124,7 @@ public enum BitUnit {
 
 		@Override
 		public double convert(double d, BitUnit u) {
-			BitUnit sourceUnit = Objects.requireNonNull(u, "u");
-			double value = UnitInputValidator.requireNonNegativeFinite(d);
-			return sourceUnit.toGbit(value);
+			return u.toGbit(UnitInputValidator.requireNonNegativeFinite(d));
 		}
 	},
 
@@ -154,9 +135,7 @@ public enum BitUnit {
 
 		@Override
 		public double convert(double d, BitUnit u) {
-			BitUnit sourceUnit = Objects.requireNonNull(u, "u");
-			double value = UnitInputValidator.requireNonNegativeFinite(d);
-			return sourceUnit.toTbit(value);
+			return u.toTbit(UnitInputValidator.requireNonNegativeFinite(d));
 		}
 	},
 
@@ -167,9 +146,7 @@ public enum BitUnit {
 
 		@Override
 		public double convert(double d, BitUnit u) {
-			BitUnit sourceUnit = Objects.requireNonNull(u, "u");
-			double value = UnitInputValidator.requireNonNegativeFinite(d);
-			return sourceUnit.toPbit(value);
+			return u.toPbit(UnitInputValidator.requireNonNegativeFinite(d));
 		}
 	};
 
@@ -346,10 +323,7 @@ public enum BitUnit {
          * @return the converted value expressed in this unit
          */
         public final double convert(double d, ByteUnit u, int bitsPerByte){
-                ByteUnit sourceUnit = Objects.requireNonNull(u, "u");
-                double value = UnitInputValidator.requireNonNegativeFinite(d);
-                int validatedBitsPerByte = UnitInputValidator.requirePositiveBitsPerByte(bitsPerByte);
-                double bits = safeMulti(sourceUnit.toBytes(value), validatedBitsPerByte);
+                double bits = safeMulti(u.toBytes(UnitInputValidator.requireNonNegativeFinite(d)), UnitInputValidator.requirePositiveBitsPerByte(bitsPerByte));
                 return convert(bits, BIT);
         }
 
