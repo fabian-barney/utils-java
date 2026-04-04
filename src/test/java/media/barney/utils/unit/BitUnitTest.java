@@ -221,4 +221,16 @@ class BitUnitTest {
                 () -> unit.convert(1d, (ByteUnit) null, Byte.SIZE))
             .forEach(executable -> assertThrows(NullPointerException.class, executable));
     }
+
+    @SuppressWarnings("NullAway")
+    @ParameterizedTest(name = "BitUnit keeps null-unit precedence for invalid value {0}")
+    @MethodSource("invalidValues")
+    @DisplayName("BitUnit null unit arguments still fail before invalid-value validation")
+    void nullUnitArgumentsStillFailFirstWhenValueIsInvalid(double value) {
+        Stream.of(
+                (Executable) () -> BitUnit.BIT.convert(value, (BitUnit) null),
+                () -> BitUnit.KIBIT.convert(value, (ByteUnit) null),
+                () -> BitUnit.MIBIT.convert(value, (ByteUnit) null, Byte.SIZE))
+            .forEach(executable -> assertThrows(NullPointerException.class, executable));
+    }
 }
