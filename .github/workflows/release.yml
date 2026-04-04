@@ -21,7 +21,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
       CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
-      CENTRAL_GPG_PASSPHRASE: ${{ secrets.CENTRAL_GPG_PASSPHRASE }}
+      MAVEN_GPG_PASSPHRASE: ${{ secrets.CENTRAL_GPG_PASSPHRASE }}
 
     steps:
       - name: Checkout
@@ -51,7 +51,7 @@ jobs:
           java-version: "21"
           cache: maven
           gpg-private-key: ${{ secrets.CENTRAL_GPG_PRIVATE_KEY }}
-          gpg-passphrase: CENTRAL_GPG_PASSPHRASE
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - name: Write Maven settings.xml
         shell: bash
@@ -77,4 +77,4 @@ jobs:
           EOF
 
       - name: Publish release
-        run: ./mvnw -B -ntp -Prelease -Drevision=${{ steps.version.outputs.version }} -Dcentral.skipPublishing=false deploy
+        run: ./mvnw -B -ntp -Prelease -Drevision=${{ steps.version.outputs.version }} -Dscm.tag=v${{ steps.version.outputs.version }} -Dcentral.skipPublishing=false deploy

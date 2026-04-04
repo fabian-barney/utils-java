@@ -42,7 +42,7 @@ overrides `revision` during tagged releases.
 You can validate the release profile locally without publishing by running:
 
 ```powershell
-.\mvnw.cmd -B -ntp -Prelease -Drevision=0.1.0 -Dcentral.skipPublishing=true deploy
+.\mvnw.cmd -B -ntp -Prelease -Drevision=0.1.0 -Dscm.tag=v0.1.0 -Dcentral.skipPublishing=true deploy
 ```
 
 This still requires:
