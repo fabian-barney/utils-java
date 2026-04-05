@@ -21,9 +21,6 @@ Configure these repository secrets:
 - `CENTRAL_GPG_PRIVATE_KEY`: ASCII-armored private key used to sign artifacts
 - `CENTRAL_GPG_PASSPHRASE`: passphrase for the private key
 
-The workflow also uses the built-in `GITHUB_TOKEN` to resolve the
-`crap-java-maven-plugin` from GitHub Packages.
-
 ## Release Process
 
 1. Make sure `main` contains the release-ready code.
@@ -48,7 +45,6 @@ You can validate the release profile locally without publishing by running:
 This still requires:
 
 - a usable GPG private key in the local keyring
-- access to GitHub Packages for the `crap-java-maven-plugin`
 
 ## Rollback Expectations
 

@@ -32,7 +32,7 @@
   <properties>
     <revision>0.0.1-SNAPSHOT</revision>
     <scm.tag>HEAD</scm.tag>
-    <crap-java.version>0.2.0</crap-java.version>
+    <crap-java.version>0.3.2</crap-java.version>
     <maven.compiler.release>21</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -45,16 +45,11 @@
     <central.autoPublish>true</central.autoPublish>
     <central.waitUntil>published</central.waitUntil>
     <central.skipPublishing>true</central.skipPublishing>
+    <jacoco.version>0.8.13</jacoco.version>
     <jspecify.version>1.0.0</jspecify.version>
     <errorprone.version>2.48.0</errorprone.version>
     <nullaway.version>0.13.1</nullaway.version>
   </properties>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>github</id>
-      <url>https://maven.pkg.github.com/fabian-barney/crap-java</url>
-    </pluginRepository>
-  </pluginRepositories>
   <dependencies>
     <dependency>
       <groupId>org.jspecify</groupId>
@@ -85,6 +80,25 @@
         <configuration>
           <useModulePath>false</useModulePath>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>media.barney</groupId>
