@@ -33,6 +33,7 @@
     <revision>0.0.1-SNAPSHOT</revision>
     <scm.tag>HEAD</scm.tag>
     <crap-java.version>0.3.2</crap-java.version>
+    <cognitive-java.version>0.3.0</cognitive-java.version>
     <maven.compiler.release>21</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -104,6 +105,18 @@
         <groupId>media.barney</groupId>
         <artifactId>crap-java-maven-plugin</artifactId>
         <version>${crap-java.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>media.barney</groupId>
+        <artifactId>cognitive-java-maven-plugin</artifactId>
+        <version>${cognitive-java.version}</version>
         <executions>
           <execution>
             <goals>
