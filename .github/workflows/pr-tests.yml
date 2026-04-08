@@ -51,7 +51,7 @@ jobs:
           cache: maven
 
       - name: Run crap-java gate
-        run: ./mvnw -B -ntp crap-java:check
+        run: ./mvnw -B -ntp verify
 
   cognitive-java:
     name: cognitive-java Gate
