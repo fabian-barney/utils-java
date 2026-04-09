@@ -10,7 +10,6 @@ on:
 
 permissions:
   contents: read
-  packages: read
 
 concurrency:
   group: pr-tests-${{ github.event.pull_request.number || github.ref }}
@@ -20,9 +19,6 @@ jobs:
   test:
     if: ${{ github.event.pull_request.draft == false }}
     runs-on: ubuntu-latest
-    env:
-      GITHUB_ACTOR: ${{ github.actor }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout
@@ -34,9 +30,6 @@ jobs:
           distribution: temurin
           java-version: "21"
           cache: maven
-          server-id: github
-          server-username: GITHUB_ACTOR
-          server-password: GITHUB_TOKEN
 
       - name: Run Maven test with NullAway
         run: ./mvnw -B -ntp -Pnullaway test
@@ -45,9 +38,6 @@ jobs:
     name: crap-java Gate
     if: ${{ github.event.pull_request.draft == false }}
     runs-on: ubuntu-latest
-    env:
-      GITHUB_ACTOR: ${{ github.actor }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout
@@ -59,9 +49,25 @@ jobs:
           distribution: temurin
           java-version: "21"
           cache: maven
-          server-id: github
-          server-username: GITHUB_ACTOR
-          server-password: GITHUB_TOKEN
 
       - name: Run crap-java gate
-        run: ./mvnw -B -ntp crap-java:check
+        run: ./mvnw -B -ntp -P!quality-gates-all,quality-gate-crap verify
+
+  cognitive-java:
+    name: cognitive-java Gate
+    if: ${{ github.event.pull_request.draft == false }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Run cognitive-java gate
+        run: ./mvnw -B -ntp -P!quality-gates-all,quality-gate-cognitive verify
