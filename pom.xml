@@ -46,7 +46,7 @@
     <central.autoPublish>true</central.autoPublish>
     <central.waitUntil>published</central.waitUntil>
     <central.skipPublishing>true</central.skipPublishing>
-    <jacoco.version>0.8.13</jacoco.version>
+    <jacoco.version>0.8.14</jacoco.version>
     <jspecify.version>1.0.0</jspecify.version>
     <errorprone.version>2.48.0</errorprone.version>
     <nullaway.version>0.13.1</nullaway.version>
