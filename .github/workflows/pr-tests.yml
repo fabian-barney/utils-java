@@ -38,14 +38,14 @@ jobs:
         run: ./mvnw -B -ntp -P!quality-gates-all,nullaway -DskipTests install
 
       - name: Upload Maven repository
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: maven-repository
           path: ~/.m2/repository
           if-no-files-found: error
 
       - name: Upload build outputs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: build-target
           path: target
@@ -72,13 +72,13 @@ jobs:
         run: chmod +x mvnw
 
       - name: Download Maven repository
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: maven-repository
           path: ~/.m2/repository
 
       - name: Download build outputs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: build-target
           path: target
@@ -87,7 +87,7 @@ jobs:
         run: ./mvnw -B -ntp -P!quality-gates-all,nullaway verify
 
       - name: Upload JaCoCo report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: jacoco-report
           path: target/site/jacoco
@@ -114,13 +114,13 @@ jobs:
         run: chmod +x mvnw
 
       - name: Download Maven repository
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: maven-repository
           path: ~/.m2/repository
 
       - name: Download build outputs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: build-target
           path: target
@@ -150,19 +150,19 @@ jobs:
         run: chmod +x mvnw
 
       - name: Download Maven repository
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: maven-repository
           path: ~/.m2/repository
 
       - name: Download build outputs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: build-target
           path: target
 
       - name: Download JaCoCo report
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: jacoco-report
           path: target/site/jacoco
@@ -192,19 +192,19 @@ jobs:
         run: chmod +x mvnw
 
       - name: Download Maven repository
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: maven-repository
           path: ~/.m2/repository
 
       - name: Download build outputs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: build-target
           path: target
 
       - name: Download JaCoCo report
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: jacoco-report
           path: target/site/jacoco
