@@ -84,7 +84,7 @@ jobs:
           path: target
 
       - name: Run unit tests
-        run: ./mvnw -B -ntp -P!quality-gates-all,nullaway -o verify
+        run: ./mvnw -B -ntp -P!quality-gates-all,nullaway verify
 
       - name: Upload JaCoCo report
         uses: actions/upload-artifact@v4
@@ -126,7 +126,7 @@ jobs:
           path: target
 
       - name: Run package build
-        run: ./mvnw -B -ntp -P!quality-gates-all,nullaway -o -DskipTests package
+        run: ./mvnw -B -ntp -P!quality-gates-all,nullaway -DskipTests package
 
   quality-crap-utils-java:
     name: verify / quality-crap-utils-java
@@ -168,7 +168,7 @@ jobs:
           path: target/site/jacoco
 
       - name: Run crap-java gate
-        run: ./mvnw -B -ntp -P!quality-gates-all,quality-gate-crap,nullaway -o verify
+        run: ./mvnw -B -ntp -P!quality-gates-all,quality-gate-crap,nullaway verify
 
   quality-cognitive-utils-java:
     name: verify / quality-cognitive-utils-java
@@ -210,4 +210,4 @@ jobs:
           path: target/site/jacoco
 
       - name: Run cognitive-java gate
-        run: ./mvnw -B -ntp -P!quality-gates-all,quality-gate-cognitive,nullaway -o verify
+        run: ./mvnw -B -ntp -P!quality-gates-all,quality-gate-cognitive,nullaway verify
