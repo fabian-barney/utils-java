@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: maven-repository
-          path: ~/.m2/repository
+          path: /home/runner/.m2/repository
           if-no-files-found: error
 
       - name: Upload build outputs
@@ -75,7 +75,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: maven-repository
-          path: ~/.m2/repository
+          path: /home/runner/.m2/repository
 
       - name: Download build outputs
         uses: actions/download-artifact@v8
@@ -117,7 +117,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: maven-repository
-          path: ~/.m2/repository
+          path: /home/runner/.m2/repository
 
       - name: Download build outputs
         uses: actions/download-artifact@v8
@@ -153,7 +153,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: maven-repository
-          path: ~/.m2/repository
+          path: /home/runner/.m2/repository
 
       - name: Download build outputs
         uses: actions/download-artifact@v8
@@ -168,7 +168,7 @@ jobs:
           path: target/site/jacoco
 
       - name: Run crap-java gate
-        run: ./mvnw -B -ntp -P!quality-gates-all,quality-gate-crap,nullaway verify
+        run: ./mvnw -B -ntp -P!quality-gates-all,quality-gate-crap,nullaway -DskipTests verify
 
   quality-cognitive-utils-java:
     name: verify / quality-cognitive-utils-java
@@ -195,7 +195,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: maven-repository
-          path: ~/.m2/repository
+          path: /home/runner/.m2/repository
 
       - name: Download build outputs
         uses: actions/download-artifact@v8
@@ -210,4 +210,4 @@ jobs:
           path: target/site/jacoco
 
       - name: Run cognitive-java gate
-        run: ./mvnw -B -ntp -P!quality-gates-all,quality-gate-cognitive,nullaway verify
+        run: ./mvnw -B -ntp -P!quality-gates-all,quality-gate-cognitive,nullaway -DskipTests verify
