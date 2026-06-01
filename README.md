@@ -12,7 +12,8 @@ It includes:
 
 ## Requirements
 
-- Java 21
+- Java 21 minimum
+- PR CI verifies compatibility with Java 21 and Java 25
 - Maven wrapper included in the repository
 
 ## Build
