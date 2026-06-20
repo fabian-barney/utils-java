@@ -58,6 +58,11 @@ jobs:
           test -n "$MAVEN_GPG_PASSPHRASE"
 
           printf '%s' "$MAVEN_GPG_PRIVATE_KEY" | gpg --batch --import
+          secret_key_count="$(gpg --batch --with-colons --list-secret-keys | awk -F: '$1 == "sec" { count++ } END { print count + 0 }')"
+          if [ "$secret_key_count" -eq 0 ]; then
+            echo "::error::MAVEN_GPG_PRIVATE_KEY did not import any secret keys." >&2
+            exit 1
+          fi
           gpg --batch --list-secret-keys --keyid-format LONG
 
       - name: Write Maven settings.xml
