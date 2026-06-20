@@ -43,7 +43,7 @@
     <maven.gpg.plugin.version>3.2.8</maven.gpg.plugin.version>
     <maven.enforcer.plugin.version>3.6.3</maven.enforcer.plugin.version>
     <central.publishing.plugin.version>0.11.0</central.publishing.plugin.version>
-    <central.deployment.repositoryName>utils-java</central.deployment.repositoryName>
+    <central.deployment.repository.name>utils-java</central.deployment.repository.name>
     <central.autoPublish>true</central.autoPublish>
     <central.waitUntil>published</central.waitUntil>
     <central.skipPublishing>true</central.skipPublishing>
@@ -282,7 +282,7 @@
             <extensions>true</extensions>
             <configuration>
               <publishingServerId>central</publishingServerId>
-              <deploymentName>${project.groupId}:${central.deployment.repositoryName}:${project.version}</deploymentName>
+              <deploymentName>${project.groupId}:${central.deployment.repository.name}:${project.version}</deploymentName>
               <autoPublish>${central.autoPublish}</autoPublish>
               <waitUntil>${central.waitUntil}</waitUntil>
               <skipPublishing>${central.skipPublishing}</skipPublishing>
