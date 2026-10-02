@@ -3,6 +3,16 @@
 All notable releases of `utils-java` are documented here. The release workflow
 uses each versioned section as the authoritative GitHub Release notes.
 
+## [0.0.12] - 2026-10-03
+
+### Changed
+
+- Updated CRAP Maven plugin from 0.6.2 to 0.6.3.
+- Updated Cognitive Maven plugin from 0.7.0 to 0.7.1.
+- Updated Maven Compiler plugin from 3.15.0 to 3.16.0.
+- Updated NullAway from 0.14.0 to 0.14.1.
+- Released only these dependency updates from the v0.0.11 source baseline.
+
 ## [0.0.11] - 2026-08-31
 
 ### Changed
