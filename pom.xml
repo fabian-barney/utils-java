@@ -32,8 +32,10 @@
   <properties>
     <revision>0.0.1-SNAPSHOT</revision>
     <scm.tag>HEAD</scm.tag>
-    <crap-java.version>0.6.3</crap-java.version>
-    <cognitive-java.version>0.7.0</cognitive-java.version>
+    <crap-java.version>1.0.1</crap-java.version>
+    <cognitive-java.version>0.7.1</cognitive-java.version>
+    <quality.jackson2.version>2.22.3</quality.jackson2.version>
+    <quality.jackson3.version>3.2.3</quality.jackson3.version>
     <maven.compiler.release>21</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -67,6 +69,82 @@
     </dependency>
   </dependencies>
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>media.barney</groupId>
+          <artifactId>crap-java-maven-plugin</artifactId>
+          <dependencies>
+            <dependency>
+              <groupId>com.fasterxml.jackson.core</groupId>
+              <artifactId>jackson-core</artifactId>
+              <version>${quality.jackson2.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>com.fasterxml.jackson.core</groupId>
+              <artifactId>jackson-databind</artifactId>
+              <version>${quality.jackson2.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>com.fasterxml.jackson.dataformat</groupId>
+              <artifactId>jackson-dataformat-xml</artifactId>
+              <version>${quality.jackson2.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>tools.jackson.core</groupId>
+              <artifactId>jackson-core</artifactId>
+              <version>${quality.jackson3.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>tools.jackson.core</groupId>
+              <artifactId>jackson-databind</artifactId>
+              <version>${quality.jackson3.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>tools.jackson.module</groupId>
+              <artifactId>jackson-module-blackbird</artifactId>
+              <version>${quality.jackson3.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>media.barney</groupId>
+          <artifactId>cognitive-java-maven-plugin</artifactId>
+          <dependencies>
+            <dependency>
+              <groupId>com.fasterxml.jackson.core</groupId>
+              <artifactId>jackson-core</artifactId>
+              <version>${quality.jackson2.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>com.fasterxml.jackson.core</groupId>
+              <artifactId>jackson-databind</artifactId>
+              <version>${quality.jackson2.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>com.fasterxml.jackson.dataformat</groupId>
+              <artifactId>jackson-dataformat-xml</artifactId>
+              <version>${quality.jackson2.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>tools.jackson.core</groupId>
+              <artifactId>jackson-core</artifactId>
+              <version>${quality.jackson3.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>tools.jackson.core</groupId>
+              <artifactId>jackson-databind</artifactId>
+              <version>${quality.jackson3.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>tools.jackson.module</groupId>
+              <artifactId>jackson-module-blackbird</artifactId>
+              <version>${quality.jackson3.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -78,7 +156,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.6</version>
+        <version>3.6.0</version>
         <configuration>
           <useModulePath>false</useModulePath>
         </configuration>
