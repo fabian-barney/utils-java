@@ -44,7 +44,7 @@
     <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
     <maven.gpg.plugin.version>3.2.8</maven.gpg.plugin.version>
     <maven.enforcer.plugin.version>3.6.3</maven.enforcer.plugin.version>
-    <central.publishing.plugin.version>0.11.0</central.publishing.plugin.version>
+    <central.publishing.plugin.version>0.12.0</central.publishing.plugin.version>
     <central.deployment.repository.name>utils-java</central.deployment.repository.name>
     <central.autoPublish>true</central.autoPublish>
     <central.waitUntil>published</central.waitUntil>
