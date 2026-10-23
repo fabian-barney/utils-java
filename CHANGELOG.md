@@ -3,6 +3,13 @@
 All notable releases of `utils-java` are documented here. The release workflow
 uses each versioned section as the authoritative GitHub Release notes.
 
+## [0.0.13] - 2026-10-24
+
+### Changed
+
+- Updated Central Publishing Maven plugin from 0.11.0 to 0.12.0.
+- Released only this dependency update from the v0.0.12 source baseline.
+
 ## [0.0.12] - 2026-10-03
 
 ### Changed
