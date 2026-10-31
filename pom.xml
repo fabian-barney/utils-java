@@ -33,7 +33,7 @@
     <revision>0.0.1-SNAPSHOT</revision>
     <scm.tag>HEAD</scm.tag>
     <crap-java.version>1.0.1</crap-java.version>
-    <cognitive-java.version>0.7.1</cognitive-java.version>
+    <cognitive-java.version>2.0.0</cognitive-java.version>
     <quality.jackson2.version>2.22.3</quality.jackson2.version>
     <quality.jackson3.version>3.2.3</quality.jackson3.version>
     <maven.compiler.release>21</maven.compiler.release>
