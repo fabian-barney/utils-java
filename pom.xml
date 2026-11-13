@@ -43,7 +43,7 @@
     <maven.source.plugin.version>3.4.0</maven.source.plugin.version>
     <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
     <maven.gpg.plugin.version>3.2.8</maven.gpg.plugin.version>
-    <maven.enforcer.plugin.version>3.6.3</maven.enforcer.plugin.version>
+    <maven.enforcer.plugin.version>3.7.0</maven.enforcer.plugin.version>
     <central.publishing.plugin.version>0.12.0</central.publishing.plugin.version>
     <central.deployment.repository.name>utils-java</central.deployment.repository.name>
     <central.autoPublish>true</central.autoPublish>
@@ -51,8 +51,8 @@
     <central.skipPublishing>true</central.skipPublishing>
     <jacoco.version>0.8.15</jacoco.version>
     <jspecify.version>1.0.1</jspecify.version>
-    <errorprone.version>2.50.0</errorprone.version>
-    <nullaway.version>0.14.2</nullaway.version>
+    <errorprone.version>2.51.0</errorprone.version>
+    <nullaway.version>0.14.3</nullaway.version>
   </properties>
   <dependencies>
     <dependency>
@@ -156,7 +156,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.6.0</version>
+        <version>3.6.1</version>
         <configuration>
           <useModulePath>false</useModulePath>
         </configuration>
