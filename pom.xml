@@ -34,12 +34,12 @@
     <scm.tag>HEAD</scm.tag>
     <crap-java.version>2.0.0</crap-java.version>
     <cognitive-java.version>0.7.1</cognitive-java.version>
-    <quality.jackson2.version>2.22.3</quality.jackson2.version>
-    <quality.jackson3.version>3.2.3</quality.jackson3.version>
+    <quality.jackson2.version>2.22.4</quality.jackson2.version>
+    <quality.jackson3.version>3.2.4</quality.jackson3.version>
     <maven.compiler.release>21</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <flatten.maven.plugin.version>1.8.0</flatten.maven.plugin.version>
+    <flatten.maven.plugin.version>1.9.0</flatten.maven.plugin.version>
     <maven.source.plugin.version>3.4.0</maven.source.plugin.version>
     <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
     <maven.gpg.plugin.version>3.2.8</maven.gpg.plugin.version>
@@ -49,9 +49,9 @@
     <central.autoPublish>true</central.autoPublish>
     <central.waitUntil>published</central.waitUntil>
     <central.skipPublishing>true</central.skipPublishing>
-    <jacoco.version>0.8.15</jacoco.version>
+    <jacoco.version>0.8.16</jacoco.version>
     <jspecify.version>1.0.1</jspecify.version>
-    <errorprone.version>2.51.0</errorprone.version>
+    <errorprone.version>2.52.0</errorprone.version>
     <nullaway.version>0.14.3</nullaway.version>
   </properties>
   <dependencies>
